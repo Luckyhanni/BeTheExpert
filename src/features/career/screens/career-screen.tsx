@@ -267,9 +267,10 @@ function CategoryLevels({
         {category.levels.map((level) => {
           const isPlayable =
             league.id === 'de-1' &&
-            category.id === 'champions' &&
-            (level.level === 1 || level.level === 2);
-          const isLocked = level.level > 2;
+            ((category.id === 'champions' && (level.level === 1 || level.level === 2)) ||
+              (category.id === 'participants' && level.level === 1));
+          const highestPlayableLevel = category.id === 'champions' ? 2 : 1;
+          const isLocked = level.level > highestPlayableLevel;
 
           return (
             <Pressable
