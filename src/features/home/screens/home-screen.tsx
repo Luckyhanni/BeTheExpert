@@ -1,130 +1,245 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { Image } from 'expo-image';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppScreen } from '@/components/ui/app-screen';
-import { Card } from '@/components/ui/card';
 import { PrimaryButton } from '@/components/ui/primary-button';
 import { dashboard } from '@/features/home/data/mock-dashboard';
 import { colors, radii, spacing } from '@/theme/tokens';
 
+const quickGames = [
+  { title: 'Transfers', symbol: '⇄', colors: ['#0A4B38', '#0B201A'] as const },
+  { title: 'Startelf', symbol: '↗', colors: ['#123E72', '#0B1E36'] as const },
+  { title: 'Higher / Lower', symbol: '⇅', colors: ['#69451D', '#25180E'] as const },
+  { title: 'Grid', symbol: '▦', colors: ['#573078', '#241330'] as const },
+];
+
 export function HomeScreen() {
   const router = useRouter();
   const xpProgress = `${Math.round((dashboard.xp / dashboard.nextLevelXp) * 100)}%` as const;
-  const dailyProgress = `${Math.round(
-    (dashboard.dailyCompleted / dashboard.dailyTotal) * 100,
-  )}%` as const;
 
   return (
     <AppScreen>
-      <View style={styles.header}>
-        <Image
-          accessibilityLabel="Be the Expert Logo"
-          contentFit="cover"
-          source={require('../../../../assets/branding/app-icon.png')}
-          style={styles.logo}
-        />
-        <View style={styles.headerCopy}>
-          <Text style={styles.eyebrow}>BE THE EXPERT</Text>
-          <Text style={styles.greeting}>Guten Tag, {dashboard.displayName}.</Text>
-          <Text style={styles.subtitle}>Learn it. Play it. Master it.</Text>
+      <View style={styles.wordmarkRow}>
+        <Text style={styles.wordmark}>
+          BE THE <Text style={styles.wordmarkAccent}>EXPERT</Text>
+        </Text>
+        <View style={styles.notification}>
+          <Text style={styles.notificationIcon}>●</Text>
         </View>
       </View>
 
-      <Card style={styles.careerCard}>
-        <View style={styles.rowBetween}>
-          <View>
-            <Text style={styles.label}>Deine Karriere</Text>
-            <Text style={styles.cardTitle}>{dashboard.careerTitle}</Text>
-          </View>
-          <View style={styles.levelBadge}>
-            <Text style={styles.levelSmall}>LEVEL</Text>
-            <Text style={styles.levelNumber}>{dashboard.level}</Text>
-          </View>
+      <View style={styles.profileRow}>
+        <View style={styles.avatarRing}>
+          <Image
+            accessibilityLabel="Be the Expert Moderator"
+            resizeMode="cover"
+            source={require('../../../../assets/branding/app-icon.png')}
+            style={styles.avatar}
+          />
         </View>
-        <View>
-          <View style={styles.rowBetween}>
-            <Text style={styles.muted}>{dashboard.xp.toLocaleString('de-DE')} XP</Text>
-            <Text style={styles.muted}>{dashboard.nextLevelXp.toLocaleString('de-DE')} XP</Text>
-          </View>
-          <View style={styles.track}>
-            <View style={[styles.fill, { width: xpProgress }]} />
-          </View>
-        </View>
-        <PrimaryButton label="Karriere fortsetzen" onPress={() => router.push('/play')} />
-      </Card>
-
-      <View style={styles.twoColumns}>
-        <Card style={styles.compactCard}>
-          <Text style={styles.label}>Expertenwertung</Text>
-          <Text style={styles.rating}>{dashboard.expertRating}</Text>
-          <Text style={styles.muted}>Top 18 % der Reporter</Text>
-        </Card>
-        <Card style={styles.compactCard}>
-          <Text style={styles.label}>Tagesserie</Text>
-          <Text style={styles.rating}>7</Text>
-          <Text style={styles.muted}>Tage in Folge</Text>
-        </Card>
-      </View>
-
-      <Card>
-        <View style={styles.rowBetween}>
-          <View>
-            <Text style={styles.label}>Daily Challenge</Text>
-            <Text style={styles.cardTitle}>Redaktionsschluss</Text>
-          </View>
-          <Text style={styles.dailyCount}>
-            {dashboard.dailyCompleted}/{dashboard.dailyTotal}
+        <View style={styles.profileCopy}>
+          <Text style={styles.greeting}>Hallo {dashboard.displayName}</Text>
+          <Text style={styles.careerLine}>
+            {dashboard.careerTitle} · Level {dashboard.level}
           </Text>
-        </View>
-        <View style={styles.track}>
-          <View style={[styles.fill, { width: dailyProgress }]} />
-        </View>
-        <Text style={styles.muted}>Noch zwei Aufgaben bis zum Tagesbonus.</Text>
-      </Card>
-
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Deine Stärken</Text>
-        {dashboard.strengths.map((strength) => (
-          <View key={strength.label} style={styles.skillRow}>
-            <Text style={styles.skillLabel}>{strength.label}</Text>
-            <View style={styles.skillTrack}>
-              <View style={[styles.skillFill, { width: `${strength.value}%` }]} />
+          <View style={styles.xpRow}>
+            <View style={styles.xpTrack}>
+              <View style={[styles.xpFill, { width: xpProgress }]} />
             </View>
-            <Text style={styles.skillValue}>{strength.value}</Text>
+            <Text style={styles.xpValue}>{dashboard.xp.toLocaleString('de-DE')} XP</Text>
           </View>
+        </View>
+      </View>
+
+      <LinearGradient
+        colors={['#183725', '#0B1913', '#08110E']}
+        end={{ x: 1, y: 1 }}
+        start={{ x: 0, y: 0 }}
+        style={styles.dailyCard}>
+        <View style={styles.dailyGlow} />
+        <View style={styles.dailyTopRow}>
+          <View style={styles.dailyCopy}>
+            <Text style={styles.sectionLabel}>DAILY CHALLENGE</Text>
+            <Text style={styles.dailyTitle}>Deutsche Meister</Text>
+          </View>
+          <Text style={styles.trophy}>🏆</Text>
+        </View>
+        <Text style={styles.dailyDescription}>
+          Beweise dein Wissen im Expert Mode und sichere dir den Tagesbonus.
+        </Text>
+        <Text style={styles.rewardLine}>3 MIN · +350 XP</Text>
+        <View style={styles.buttonWrap}>
+          <PrimaryButton label="Jetzt spielen  →" onPress={() => router.push('/play')} />
+        </View>
+      </LinearGradient>
+
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Schnell starten</Text>
+        <Text style={styles.sectionAction}>Alle Spiele →</Text>
+      </View>
+
+      <View style={styles.quickGrid}>
+        {quickGames.map((game) => (
+          <Pressable
+            accessibilityRole="button"
+            key={game.title}
+            onPress={() => router.push('/play')}
+            style={({ pressed }) => [styles.quickCard, pressed && styles.pressed]}>
+            <LinearGradient colors={game.colors} style={styles.quickGradient}>
+              <Text style={styles.quickSymbol}>{game.symbol}</Text>
+              <Text style={styles.quickTitle}>{game.title}</Text>
+            </LinearGradient>
+          </Pressable>
         ))}
+      </View>
+
+      <View style={styles.progressCard}>
+        <View style={styles.progressHeader}>
+          <Text style={styles.progressTitle}>Dein Fortschritt</Text>
+          <Text style={styles.progressArrow}>›</Text>
+        </View>
+        <View style={styles.rankRow}>
+          <View style={styles.rankBadge}>
+            <Text style={styles.rankIcon}>★</Text>
+          </View>
+          <View style={styles.rankCopy}>
+            <Text style={styles.rankName}>{dashboard.careerTitle}</Text>
+            <Text style={styles.rankGoal}>Nächstes Ziel: Welt-Reporter</Text>
+          </View>
+        </View>
+        <View style={styles.progressTrack}>
+          <View style={[styles.progressFill, { width: xpProgress }]} />
+        </View>
       </View>
     </AppScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, paddingTop: spacing.md },
-  logo: { width: 76, height: 76, borderRadius: radii.md, borderWidth: 1, borderColor: colors.border },
-  headerCopy: { flex: 1, gap: spacing.xs },
-  eyebrow: { color: colors.accent, fontSize: 13, fontWeight: '900', letterSpacing: 2.2 },
-  greeting: { color: colors.text, fontSize: 25, fontWeight: '900', letterSpacing: -0.6 },
-  subtitle: { color: colors.textMuted, fontSize: 15 },
-  careerCard: { backgroundColor: colors.surfaceElevated },
-  rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: spacing.md },
-  label: { color: colors.textMuted, fontSize: 12, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' },
-  cardTitle: { color: colors.text, fontSize: 21, fontWeight: '800', marginTop: spacing.xs },
-  levelBadge: { width: 70, height: 70, borderRadius: 35, backgroundColor: colors.accent, alignItems: 'center', justifyContent: 'center' },
-  levelSmall: { color: colors.background, fontSize: 9, fontWeight: '900', letterSpacing: 1 },
-  levelNumber: { color: colors.background, fontSize: 27, fontWeight: '900', lineHeight: 29 },
-  muted: { color: colors.textMuted, fontSize: 13 },
-  track: { height: 8, borderRadius: radii.pill, backgroundColor: colors.background, overflow: 'hidden', marginTop: spacing.sm },
-  fill: { height: '100%', borderRadius: radii.pill, backgroundColor: colors.accent },
-  twoColumns: { flexDirection: 'row', gap: spacing.md },
-  compactCard: { flex: 1, minWidth: 0 },
-  rating: { color: colors.text, fontSize: 32, fontWeight: '900' },
-  dailyCount: { color: colors.accent, fontSize: 20, fontWeight: '900' },
-  section: { gap: spacing.md },
-  sectionTitle: { color: colors.text, fontSize: 20, fontWeight: '800' },
-  skillRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
-  skillLabel: { width: 82, color: colors.text, fontSize: 14, fontWeight: '700' },
-  skillTrack: { flex: 1, height: 8, borderRadius: radii.pill, backgroundColor: colors.surface, overflow: 'hidden' },
-  skillFill: { height: '100%', backgroundColor: colors.accentStrong, borderRadius: radii.pill },
-  skillValue: { width: 28, color: colors.text, textAlign: 'right', fontWeight: '800' },
+  wordmarkRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: spacing.md,
+  },
+  wordmark: {
+    color: colors.text,
+    fontSize: 28,
+    fontStyle: 'italic',
+    fontWeight: '900',
+    letterSpacing: -0.8,
+  },
+  wordmarkAccent: { color: colors.accent },
+  notification: {
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+  },
+  notificationIcon: { color: colors.accent, fontSize: 18 },
+  profileRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  avatarRing: {
+    width: 92,
+    height: 92,
+    padding: 3,
+    borderRadius: 46,
+    backgroundColor: colors.accent,
+  },
+  avatar: { width: '100%', height: '100%', borderRadius: 43 },
+  profileCopy: { flex: 1, gap: spacing.sm },
+  greeting: { color: colors.text, fontSize: 27, fontWeight: '900', letterSpacing: -0.5 },
+  careerLine: { color: colors.textMuted, fontSize: 16, fontWeight: '600' },
+  xpRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  xpTrack: {
+    flex: 1,
+    height: 10,
+    borderRadius: radii.pill,
+    backgroundColor: colors.surfaceElevated,
+    overflow: 'hidden',
+  },
+  xpFill: { height: '100%', borderRadius: radii.pill, backgroundColor: colors.accent },
+  xpValue: { color: colors.text, fontSize: 15, fontWeight: '800' },
+  dailyCard: {
+    minHeight: 310,
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: '#315342',
+    padding: spacing.lg,
+  },
+  dailyGlow: {
+    position: 'absolute',
+    right: -50,
+    top: -50,
+    width: 190,
+    height: 190,
+    borderRadius: 95,
+    backgroundColor: '#335D24',
+    opacity: 0.3,
+  },
+  dailyTopRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
+  dailyCopy: { flex: 1, gap: spacing.sm },
+  sectionLabel: { color: colors.accent, fontSize: 15, fontWeight: '900', letterSpacing: 1.5 },
+  dailyTitle: { color: colors.text, fontSize: 30, fontWeight: '900', lineHeight: 36 },
+  trophy: { fontSize: 62, marginLeft: spacing.sm },
+  dailyDescription: { color: colors.text, fontSize: 17, lineHeight: 25, maxWidth: 420 },
+  rewardLine: { color: colors.accent, fontSize: 16, fontWeight: '900', letterSpacing: 0.8 },
+  buttonWrap: { maxWidth: 260 },
+  sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  sectionTitle: { color: colors.text, fontSize: 24, fontWeight: '900' },
+  sectionAction: { color: colors.textMuted, fontSize: 15, fontWeight: '700' },
+  quickGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md },
+  quickCard: { width: '47.5%', minHeight: 138, borderRadius: radii.md, overflow: 'hidden' },
+  quickGradient: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.sm,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: '#315342',
+    padding: spacing.md,
+  },
+  pressed: { opacity: 0.78, transform: [{ scale: 0.98 }] },
+  quickSymbol: { color: colors.accent, fontSize: 47, fontWeight: '500', lineHeight: 50 },
+  quickTitle: { color: colors.text, fontSize: 17, fontWeight: '800', textAlign: 'center' },
+  progressCard: {
+    gap: spacing.lg,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+    padding: spacing.lg,
+  },
+  progressHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  progressTitle: { color: colors.text, fontSize: 22, fontWeight: '900' },
+  progressArrow: { color: colors.textMuted, fontSize: 34, lineHeight: 34 },
+  rankRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  rankBadge: {
+    width: 68,
+    height: 68,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    borderWidth: 3,
+    borderColor: colors.accent,
+    backgroundColor: colors.surfaceElevated,
+  },
+  rankIcon: { color: colors.accent, fontSize: 30 },
+  rankCopy: { flex: 1, gap: spacing.xs },
+  rankName: { color: colors.text, fontSize: 19, fontWeight: '900' },
+  rankGoal: { color: colors.textMuted, fontSize: 15, fontWeight: '600' },
+  progressTrack: {
+    height: 12,
+    borderRadius: radii.pill,
+    backgroundColor: colors.background,
+    overflow: 'hidden',
+  },
+  progressFill: { height: '100%', borderRadius: radii.pill, backgroundColor: colors.accent },
 });

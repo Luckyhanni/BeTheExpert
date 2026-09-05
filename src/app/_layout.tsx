@@ -17,34 +17,48 @@ export default function RootLayout() {
           headerShown: false,
           tabBarActiveTintColor: colors.accent,
           tabBarInactiveTintColor: colors.textMuted,
-          tabBarLabelStyle: { fontSize: 11, fontWeight: '700' },
+          tabBarLabelStyle: { fontSize: 13, fontWeight: '700' },
           tabBarStyle: {
             backgroundColor: colors.surface,
             borderTopColor: colors.border,
-            height: 68,
-            paddingBottom: 8,
-            paddingTop: 6,
+            height: 76,
+            paddingBottom: 10,
+            paddingTop: 8,
           },
         }}>
         <Tabs.Screen
           name="index"
           options={{
             title: 'Start',
-            tabBarIcon: ({ color }) => <TabIcon color={color} label="B" />,
+            tabBarIcon: ({ color }) => <TabIcon color={color} label="⌂" />,
           }}
         />
         <Tabs.Screen
           name="play"
           options={{
             title: 'Spielen',
-            tabBarIcon: ({ color }) => <TabIcon color={color} label="?" />,
+            tabBarIcon: ({ color }) => <TabIcon color={color} label="▶" />,
+          }}
+        />
+        <Tabs.Screen
+          name="career"
+          options={{
+            title: 'Karriere',
+            tabBarIcon: ({ color }) => <TabIcon color={color} label="▥" />,
+          }}
+        />
+        <Tabs.Screen
+          name="battle"
+          options={{
+            title: 'Battle',
+            tabBarIcon: ({ color }) => <TabIcon color={color} label="⚔" />,
           }}
         />
         <Tabs.Screen
           name="profile"
           options={{
             title: 'Profil',
-            tabBarIcon: ({ color }) => <TabIcon color={color} label="★" />,
+            tabBarIcon: ({ color }) => <TabIcon color={color} label="○" />,
           }}
         />
       </Tabs>

@@ -1,9 +1,9 @@
 export const dashboard = {
   displayName: 'Flo',
   careerTitle: 'Europa-Reporter',
-  level: 12,
-  xp: 3450,
-  nextLevelXp: 4200,
+  level: 18,
+  xp: 7450,
+  nextLevelXp: 8000,
   expertRating: 1748,
   dailyCompleted: 3,
   dailyTotal: 5,
