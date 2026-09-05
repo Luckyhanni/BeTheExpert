@@ -6,7 +6,7 @@ export type CareerCategory = {
 };
 
 export type CareerLevel = {
-  level: 1 | 2 | 3 | 4 | 5;
+  level: 1 | 2 | 3 | 4;
   title: string;
   mode: string;
   description: string;
@@ -54,12 +54,5 @@ export const careerLevels: CareerLevel[] = [
     mode: 'Eine Jahreszahl',
     description: 'Nur eine Jahreszahl als Hinweis. Antworte in zehn Sekunden.',
     timeLimitSeconds: 10,
-  },
-  {
-    level: 5,
-    title: 'Legende',
-    mode: 'Ohne Hilfen',
-    description: 'Gemischte Expertenfragen ohne Antwortmöglichkeiten oder Hinweise.',
-    timeLimitSeconds: null,
   },
 ];

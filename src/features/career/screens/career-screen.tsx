@@ -191,7 +191,7 @@ function CareerOverview({ league }: { league: CareerLeague }) {
       <View style={styles.header}>
         <Text style={styles.eyebrow}>DEINE KARRIERE</Text>
         <Text style={styles.title}>{league.name}</Text>
-        <Text style={styles.intro}>Wähle einen Wissensbereich und meistere seine fünf Level.</Text>
+        <Text style={styles.intro}>Wähle einen Wissensbereich und meistere seine vier Level.</Text>
       </View>
 
       <LinearGradient colors={['#1C482F', '#0C2117', '#08130E']} style={styles.heroCard}>
@@ -199,7 +199,7 @@ function CareerOverview({ league }: { league: CareerLeague }) {
           <Text style={styles.heroCountryCode}>{league.countryCode}</Text>
         </View>
         <Text style={styles.heroLabel}>KARRIERE-FORTSCHRITT</Text>
-        <Text style={styles.heroTitle}>0 / 50 Level</Text>
+        <Text style={styles.heroTitle}>0 / 40 Level</Text>
         <Text style={styles.heroCountry}>{league.country} · Deine Liga</Text>
       </LinearGradient>
 
@@ -225,7 +225,7 @@ function CareerOverview({ league }: { league: CareerLeague }) {
             <Text style={styles.categoryDescription}>{category.description}</Text>
             <View style={styles.categoryProgressRow}>
               <View style={styles.categoryProgressTrack} />
-              <Text style={styles.categoryProgressText}>0 / 5</Text>
+              <Text style={styles.categoryProgressText}>0 / 4</Text>
             </View>
           </Pressable>
         ))}

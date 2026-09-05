@@ -8,8 +8,8 @@ describe('career path', () => {
     expect(new Set(careerCategories.map((category) => category.id)).size).toBe(10);
   });
 
-  it('contains five ordered difficulty levels', () => {
-    expect(careerLevels.map((level) => level.level)).toEqual([1, 2, 3, 4, 5]);
+  it('contains four ordered difficulty levels', () => {
+    expect(careerLevels.map((level) => level.level)).toEqual([1, 2, 3, 4]);
   });
 
   it('limits impossible mode to ten seconds', () => {
