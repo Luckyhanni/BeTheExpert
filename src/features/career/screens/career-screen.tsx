@@ -14,6 +14,11 @@ import {
   loadCareerLeagueId,
   saveCareerLeagueId,
 } from '@/features/career/data/career-storage';
+import {
+  careerCategories,
+  careerLevels,
+  type CareerCategory,
+} from '@/features/career/data/career-path';
 import { colors, radii, spacing } from '@/theme/tokens';
 
 export function CareerScreen() {
@@ -169,42 +174,125 @@ function LeagueGroup({
 }
 
 function CareerOverview({ league }: { league: CareerLeague }) {
+  const [activeCategory, setActiveCategory] = useState<CareerCategory | null>(null);
+
+  if (activeCategory) {
+    return (
+      <CategoryLevels
+        category={activeCategory}
+        league={league}
+        onBack={() => setActiveCategory(null)}
+      />
+    );
+  }
+
   return (
     <AppScreen>
       <View style={styles.header}>
         <Text style={styles.eyebrow}>DEINE KARRIERE</Text>
-        <Text style={styles.title}>Bereit für den Aufstieg?</Text>
+        <Text style={styles.title}>{league.name}</Text>
+        <Text style={styles.intro}>Wähle einen Wissensbereich und meistere seine fünf Level.</Text>
       </View>
 
       <LinearGradient colors={['#1C482F', '#0C2117', '#08130E']} style={styles.heroCard}>
         <View style={styles.heroCountryBadge}>
           <Text style={styles.heroCountryCode}>{league.countryCode}</Text>
         </View>
-        <Text style={styles.heroLabel}>DEINE LIGA</Text>
-        <Text style={styles.heroTitle}>{league.name}</Text>
-        <Text style={styles.heroCountry}>{league.country} · {league.tier}. Liga</Text>
+        <Text style={styles.heroLabel}>KARRIERE-FORTSCHRITT</Text>
+        <Text style={styles.heroTitle}>0 / 50 Level</Text>
+        <Text style={styles.heroCountry}>{league.country} · Deine Liga</Text>
       </LinearGradient>
 
-      <View style={styles.statsRow}>
-        <View style={styles.statCard}>
-          <Text style={styles.statValue}>1</Text>
-          <Text style={styles.statLabel}>Spieltag</Text>
+      <View style={styles.categoryHeading}>
+        <Text style={styles.categoryHeadingTitle}>10 Wissensbereiche</Text>
+        <Text style={styles.categoryHeadingCount}>0 %</Text>
+      </View>
+
+      <View style={styles.categoryGrid}>
+        {careerCategories.map((category, index) => (
+          <Pressable
+            accessibilityRole="button"
+            key={category.id}
+            onPress={() => setActiveCategory(category)}
+            style={({ pressed }) => [styles.categoryCard, pressed && styles.pressed]}>
+            <View style={styles.categoryTopRow}>
+              <View style={styles.categorySymbolBox}>
+                <Text style={styles.categorySymbol}>{category.symbol}</Text>
+              </View>
+              <Text style={styles.categoryNumber}>{String(index + 1).padStart(2, '0')}</Text>
+            </View>
+            <Text style={styles.categoryTitle}>{category.title}</Text>
+            <Text style={styles.categoryDescription}>{category.description}</Text>
+            <View style={styles.categoryProgressRow}>
+              <View style={styles.categoryProgressTrack} />
+              <Text style={styles.categoryProgressText}>0 / 5</Text>
+            </View>
+          </Pressable>
+        ))}
+      </View>
+    </AppScreen>
+  );
+}
+
+function CategoryLevels({
+  category,
+  league,
+  onBack,
+}: {
+  category: CareerCategory;
+  league: CareerLeague;
+  onBack: () => void;
+}) {
+  return (
+    <AppScreen>
+      <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
+        <Text style={styles.backButtonText}>← Alle Bereiche</Text>
+      </Pressable>
+
+      <View style={styles.levelHeader}>
+        <View style={styles.levelHeroSymbol}>
+          <Text style={styles.levelHeroSymbolText}>{category.symbol}</Text>
         </View>
-        <View style={styles.statCard}>
-          <Text style={styles.statValue}>0</Text>
-          <Text style={styles.statLabel}>Punkte</Text>
-        </View>
-        <View style={styles.statCard}>
-          <Text style={styles.statValue}>10.</Text>
-          <Text style={styles.statLabel}>Rang</Text>
+        <View style={styles.levelHeaderCopy}>
+          <Text style={styles.eyebrow}>{league.name.toUpperCase()}</Text>
+          <Text style={styles.title}>{category.title}</Text>
+          <Text style={styles.intro}>{category.description}</Text>
         </View>
       </View>
 
-      <View style={styles.nextStepCard}>
-        <Text style={styles.nextStepLabel}>NÄCHSTE AUFGABE</Text>
-        <Text style={styles.nextStepTitle}>Saisonauftakt</Text>
-        <Text style={styles.nextStepText}>Beweise dein Wissen und sammle die ersten Punkte.</Text>
-        <PrimaryButton label="Aufgabe starten  →" onPress={() => {}} />
+      <View style={styles.levelList}>
+        {careerLevels.map((level) => {
+          const isAvailable = level.level === 1;
+
+          return (
+            <View
+              accessibilityLabel={`Level ${level.level}: ${level.title}`}
+              key={level.level}
+              style={[styles.levelCard, !isAvailable && styles.levelCardLocked]}>
+              <View style={[styles.levelNumber, isAvailable && styles.levelNumberAvailable]}>
+                <Text style={[styles.levelNumberText, isAvailable && styles.levelNumberTextAvailable]}>
+                  {level.level}
+                </Text>
+              </View>
+              <View style={styles.levelCopy}>
+                <View style={styles.levelTitleRow}>
+                  <Text style={styles.levelTitle}>{level.title}</Text>
+                  <Text style={isAvailable ? styles.levelStatusAvailable : styles.levelStatusLocked}>
+                    {isAvailable ? 'OFFEN' : 'GESPERRT'}
+                  </Text>
+                </View>
+                <Text style={styles.levelMode}>
+                  {level.mode}{level.timeLimitSeconds ? ` · ${level.timeLimitSeconds} SEK.` : ''}
+                </Text>
+                <Text style={styles.levelDescription}>{level.description}</Text>
+              </View>
+            </View>
+          );
+        })}
+      </View>
+
+      <View style={styles.levelHint}>
+        <Text style={styles.levelHintText}>Schließe ein Level ab, um das nächste freizuschalten.</Text>
       </View>
     </AppScreen>
   );
@@ -330,28 +418,91 @@ const styles = StyleSheet.create({
   heroLabel: { color: colors.accent, fontSize: 14, fontWeight: '900', letterSpacing: 1.6 },
   heroTitle: { color: colors.text, fontSize: 32, fontWeight: '900', textAlign: 'center' },
   heroCountry: { color: colors.textMuted, fontSize: 16, fontWeight: '700' },
-  statsRow: { flexDirection: 'row', gap: spacing.sm },
-  statCard: {
-    flex: 1,
+  categoryHeading: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  categoryHeadingTitle: { color: colors.text, fontSize: 23, fontWeight: '900' },
+  categoryHeadingCount: { color: colors.accent, fontSize: 16, fontWeight: '900' },
+  categoryGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.md },
+  categoryCard: {
+    width: '47.5%',
+    minHeight: 190,
+    gap: spacing.sm,
+    padding: spacing.md,
+    borderRadius: radii.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+  },
+  categoryTopRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  categorySymbolBox: {
+    width: 44,
+    height: 44,
     alignItems: 'center',
-    gap: spacing.xs,
-    paddingVertical: spacing.lg,
-    borderRadius: radii.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
+    justifyContent: 'center',
+    borderRadius: 14,
+    backgroundColor: colors.surfaceElevated,
   },
-  statValue: { color: colors.text, fontSize: 25, fontWeight: '900' },
-  statLabel: { color: colors.textMuted, fontSize: 14, fontWeight: '700' },
-  nextStepCard: {
+  categorySymbol: { color: colors.accent, fontSize: 24, fontWeight: '900' },
+  categoryNumber: { color: colors.textMuted, fontSize: 15, fontWeight: '900' },
+  categoryTitle: { color: colors.text, fontSize: 20, fontWeight: '900' },
+  categoryDescription: { flex: 1, color: colors.textMuted, fontSize: 14, lineHeight: 20 },
+  categoryProgressRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  categoryProgressTrack: {
+    flex: 1,
+    height: 7,
+    borderRadius: radii.pill,
+    backgroundColor: colors.background,
+  },
+  categoryProgressText: { color: colors.textMuted, fontSize: 13, fontWeight: '800' },
+  backButton: { alignSelf: 'flex-start', paddingVertical: spacing.sm },
+  backButtonText: { color: colors.accent, fontSize: 16, fontWeight: '900' },
+  levelHeader: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
+  levelHeroSymbol: {
+    width: 76,
+    height: 76,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 24,
+    backgroundColor: colors.surfaceElevated,
+    borderWidth: 2,
+    borderColor: colors.accent,
+  },
+  levelHeroSymbolText: { color: colors.accent, fontSize: 38, fontWeight: '900' },
+  levelHeaderCopy: { flex: 1, gap: spacing.xs },
+  levelList: { gap: spacing.md },
+  levelCard: {
+    flexDirection: 'row',
     gap: spacing.md,
-    padding: spacing.lg,
+    padding: spacing.md,
     borderRadius: radii.md,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.accent,
     backgroundColor: colors.surface,
   },
-  nextStepLabel: { color: colors.accent, fontSize: 14, fontWeight: '900', letterSpacing: 1.3 },
-  nextStepTitle: { color: colors.text, fontSize: 24, fontWeight: '900' },
-  nextStepText: { color: colors.textMuted, fontSize: 16, lineHeight: 23 },
+  levelCardLocked: { borderColor: colors.border, opacity: 0.62 },
+  levelNumber: {
+    width: 48,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 24,
+    backgroundColor: colors.background,
+    borderWidth: 2,
+    borderColor: colors.border,
+  },
+  levelNumberAvailable: { borderColor: colors.accent, backgroundColor: colors.accent },
+  levelNumberText: { color: colors.textMuted, fontSize: 20, fontWeight: '900' },
+  levelNumberTextAvailable: { color: colors.background },
+  levelCopy: { flex: 1, gap: spacing.xs },
+  levelTitleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: spacing.sm },
+  levelTitle: { color: colors.text, fontSize: 20, fontWeight: '900' },
+  levelStatusAvailable: { color: colors.accent, fontSize: 12, fontWeight: '900', letterSpacing: 0.8 },
+  levelStatusLocked: { color: colors.textMuted, fontSize: 12, fontWeight: '900', letterSpacing: 0.8 },
+  levelMode: { color: colors.accent, fontSize: 14, fontWeight: '800' },
+  levelDescription: { color: colors.textMuted, fontSize: 15, lineHeight: 21 },
+  levelHint: {
+    padding: spacing.md,
+    borderRadius: radii.md,
+    backgroundColor: colors.surfaceElevated,
+  },
+  levelHintText: { color: colors.text, fontSize: 15, fontWeight: '700', textAlign: 'center' },
 });
