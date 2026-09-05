@@ -16,7 +16,7 @@ import {
 } from '@/features/career/data/career-storage';
 import {
   careerCategories,
-  careerLevels,
+  formatLevelExample,
   type CareerCategory,
 } from '@/features/career/data/career-path';
 import { colors, radii, spacing } from '@/theme/tokens';
@@ -261,7 +261,7 @@ function CategoryLevels({
       </View>
 
       <View style={styles.levelList}>
-        {careerLevels.map((level) => {
+        {category.levels.map((level) => {
           const isAvailable = level.level === 1;
 
           return (
@@ -285,6 +285,12 @@ function CategoryLevels({
                   {level.mode}{level.timeLimitSeconds ? ` · ${level.timeLimitSeconds} SEK.` : ''}
                 </Text>
                 <Text style={styles.levelDescription}>{level.description}</Text>
+                <View style={styles.levelExampleBox}>
+                  <Text style={styles.levelExampleLabel}>BEISPIEL</Text>
+                  <Text style={styles.levelExample}>
+                    {formatLevelExample(level.example, league.name)}
+                  </Text>
+                </View>
               </View>
             </View>
           );
@@ -499,6 +505,15 @@ const styles = StyleSheet.create({
   levelStatusLocked: { color: colors.textMuted, fontSize: 12, fontWeight: '900', letterSpacing: 0.8 },
   levelMode: { color: colors.accent, fontSize: 14, fontWeight: '800' },
   levelDescription: { color: colors.textMuted, fontSize: 15, lineHeight: 21 },
+  levelExampleBox: {
+    gap: spacing.xs,
+    marginTop: spacing.xs,
+    padding: spacing.sm,
+    borderRadius: radii.sm,
+    backgroundColor: colors.background,
+  },
+  levelExampleLabel: { color: colors.accent, fontSize: 11, fontWeight: '900', letterSpacing: 1 },
+  levelExample: { color: colors.text, fontSize: 14, lineHeight: 20, fontWeight: '600' },
   levelHint: {
     padding: spacing.md,
     borderRadius: radii.md,
