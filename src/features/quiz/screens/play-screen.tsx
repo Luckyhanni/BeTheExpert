@@ -10,6 +10,7 @@ import { isCorrectAnswer } from '@/features/quiz/domain/quiz';
 import { BundesligaChampionsLevelOneScreen } from '@/features/quiz/screens/bundesliga-champions-level-one-screen';
 import { BundesligaChampionsLevelTwoScreen } from '@/features/quiz/screens/bundesliga-champions-level-two-screen';
 import { BundesligaParticipantsLevelOneScreen } from '@/features/quiz/screens/bundesliga-participants-level-one-screen';
+import { BundesligaTopScorersLevelOneScreen } from '@/features/quiz/screens/bundesliga-top-scorers-level-one-screen';
 import { colors, radii, spacing } from '@/theme/tokens';
 
 export function PlayScreen() {
@@ -18,6 +19,14 @@ export function PlayScreen() {
     categoryId?: string;
     level?: string;
   }>();
+
+  if (
+    params.leagueId === 'de-1' &&
+    params.categoryId === 'top-scorers' &&
+    params.level === '1'
+  ) {
+    return <BundesligaTopScorersLevelOneScreen />;
+  }
 
   if (
     params.leagueId === 'de-1' &&
