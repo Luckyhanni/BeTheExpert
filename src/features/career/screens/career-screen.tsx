@@ -266,8 +266,10 @@ function CategoryLevels({
       <View style={styles.levelList}>
         {category.levels.map((level) => {
           const isPlayable =
-            league.id === 'de-1' && category.id === 'champions' && level.level === 1;
-          const isLocked = level.level > 1;
+            league.id === 'de-1' &&
+            category.id === 'champions' &&
+            (level.level === 1 || level.level === 2);
+          const isLocked = level.level > 2;
 
           return (
             <Pressable

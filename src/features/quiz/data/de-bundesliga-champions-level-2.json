@@ -1,0 +1,912 @@
+{
+  "schemaVersion": "1.0",
+  "app": "Be the Expert",
+  "stage": 2,
+  "category": "Deutsche Fußballmeister",
+  "language": "de-DE",
+  "verifiedAsOf": "2026-09-05",
+  "lastCompletedSeason": "2025/26",
+  "scope": {
+    "included": "Höchste deutsche Fußballmeisterschaft der Männer seit 1903 bis einschließlich Saison 2025/26, einschließlich der Meistertitel vor Einführung der Bundesliga.",
+    "excluded": [
+      "Eigenständige DDR-Meisterschaft und Ostzonenmeisterschaft",
+      "Frauenfußball",
+      "Jugendfußball",
+      "Deutsche Amateurmeisterschaft",
+      "Regionale und unterklassige Meisterschaften",
+      "Meisterschaften anderer historischer Parallelverbände",
+      "Titel vor 1903",
+      "Pokalsiege"
+    ],
+    "continuityWithStage1": "Dieselbe 30er-Meistermenge wie bei Stufe 1; historische bzw. zugehörige Nachfolgenamen sind keine zusätzlichen Lösungen.",
+    "ddrClarification": "Der Ausschluss ist eine Eingrenzung dieser Quizrunde und keine Aberkennung historischer DDR-Meistertitel.",
+    "yearMeaning": "Kalenderjahr des ersten Meistertitelgewinns, nicht die Jahreszahl des Saisonbeginns.",
+    "successorAliasRule": "Nur die explizit hinterlegten Namen akzeptieren. Ein Titelträger und zugeordnete Nachfolgenamen teilen dieselbe Club-ID. Keine automatische Vererbung an weitere Fusionsteilnehmer oder ähnlich benannte Vereine."
+  },
+  "questions": [
+    {
+      "id": "bte_stage_2_alle_deutschen_meister_seit_1903",
+      "type": "free_text_set",
+      "title": "Alle Meister frei nennen",
+      "question": "Nenne alle Vereine, die seit 1903 deutscher Fußballmeister der Männer wurden.",
+      "playerHint": "Gesucht sind 30 Vereine. Titel vor Einführung der Bundesliga zählen mit; die eigenständige DDR-Meisterschaft zählt nicht. Stand: Ende der Saison 2025/26. Hinterlegte historische und Nachfolgenamen werden als dieselbe Lösung gezählt.",
+      "correctAnswerIds": [
+        "bte_club_102",
+        "bte_club_113",
+        "bte_club_091",
+        "bte_club_108",
+        "bte_club_111",
+        "bte_club_094",
+        "bte_club_084",
+        "bte_club_075",
+        "bte_club_040",
+        "bte_club_021",
+        "bte_club_062",
+        "bte_club_002",
+        "bte_club_072",
+        "bte_club_053",
+        "bte_club_065",
+        "bte_club_118",
+        "bte_club_097",
+        "bte_club_085",
+        "bte_club_015",
+        "bte_club_033",
+        "bte_club_078",
+        "bte_club_008",
+        "bte_club_059",
+        "bte_club_031",
+        "bte_club_018",
+        "bte_club_052",
+        "bte_club_046",
+        "bte_club_028",
+        "bte_club_043",
+        "bte_club_009"
+      ],
+      "answerCount": 30,
+      "answerOrderMatters": false,
+      "counterInitialValue": "0 / 30",
+      "duplicateRule": "Bereits gefundene Club-IDs nicht erneut zählen, auch nicht bei einer anderen akzeptierten Namensvariante."
+    }
+  ],
+  "matchingPolicy": {
+    "status": "Vorgabe für die Implementierung, keine bereits in der App installierte Prüflogik.",
+    "strategy": "Exakter Vergleich gegen normalisierte acceptedNames. Keine reine Teilstring-Suche und keine automatische unscharfe Anerkennung.",
+    "normalizationInOrder": [
+      "Unicode NFKC normalisieren.",
+      "Groß-/Kleinschreibung ignorieren (Casefold).",
+      "ä -> ae; ö -> oe; ü -> ue; ß -> ss.",
+      "Nicht alphanumerische Zeichen einschließlich Leerzeichen und Satzzeichen entfernen.",
+      "Zahlen und Vereinspräfixe nicht pauschal entfernen; ausdrücklich hinterlegte Kurzformen separat erlauben."
+    ],
+    "unlistedNames": "Nicht automatisch werten; gegebenenfalls manuell redaktionell prüfen.",
+    "fuzzyMatching": "Allenfalls als nicht wertender Korrekturvorschlag. Keine automatische Umdeutung eines falschen Vereins zu einem richtigen.",
+    "ambiguousInputsWithoutAutomaticCredit": [
+      "Berlin",
+      "München",
+      "Karlsruhe",
+      "Freiburg",
+      "Mannheim",
+      "Dresden",
+      "Leipzig",
+      "Borussia",
+      "Eintracht",
+      "Union",
+      "Viktoria",
+      "Fortuna",
+      "VfB",
+      "VfL",
+      "Bayer"
+    ],
+    "incorrectOrDisallowedExamples": [
+      {
+        "input": "1. FC Union Berlin",
+        "reason": "Union 92 Berlin ist der Meister von 1905, nicht 1. FC Union Berlin."
+      },
+      {
+        "input": "Union Berlin",
+        "reason": "Ohne 92 ist dies keine eindeutige Bezeichnung von Union 92 Berlin; nicht automatisch als diesen Meister akzeptieren."
+      },
+      {
+        "input": "SC Freiburg",
+        "reason": "Gesucht ist unter anderem der Freiburger FC, nicht SC Freiburg."
+      },
+      {
+        "input": "Dynamo Dresden",
+        "reason": "Die eigenständige DDR-Meisterschaft ist aus dieser Runde ausgeschlossen; Dresdner SC ist eine andere Lösung."
+      },
+      {
+        "input": "SG Dynamo Dresden",
+        "reason": "DDR-Meistertitel zählen in dieser Runde nicht."
+      },
+      {
+        "input": "BFC Dynamo",
+        "reason": "DDR-Meistertitel zählen in dieser Runde nicht."
+      },
+      {
+        "input": "SV Waldhof Mannheim",
+        "reason": "Nicht mit dem Meister VfR Mannheim verwechseln."
+      },
+      {
+        "input": "RB Leipzig",
+        "reason": "Nicht mit dem Meister VfB Leipzig / Lokomotive Leipzig verwechseln."
+      },
+      {
+        "input": "VfL Stuttgart",
+        "reason": "Keine automatische Korrektur zu VfB Stuttgart."
+      },
+      {
+        "input": "VfB Wolfsburg",
+        "reason": "Keine automatische Korrektur zu VfL Wolfsburg."
+      }
+    ]
+  },
+  "clubs": [
+    {
+      "id": "bte_club_102",
+      "name": "VfB Leipzig",
+      "firstChampionshipYear": 1903,
+      "acceptedNames": [
+        "VfB Leipzig",
+        "VfB Leipzig 1893",
+        "1. FC Lokomotive Leipzig",
+        "Lokomotive Leipzig",
+        "Lok Leipzig",
+        "1. FC Lok Leipzig"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "leipzig_first",
+        "leipzig_successor"
+      ],
+      "editorialNote": "Meister 1903 als VfB Leipzig. Lokomotive Leipzig wird als zugehöriger Nachfolgeverein auf dieselbe Antwort-ID gewertet; kein zusätzlicher Verein."
+    },
+    {
+      "id": "bte_club_113",
+      "name": "Union 92 Berlin",
+      "firstChampionshipYear": 1905,
+      "acceptedNames": [
+        "Union 92 Berlin",
+        "Berliner TuFC Union 1892",
+        "Berliner TuFC Union 92",
+        "BTuFC Union 1892",
+        "Union 1892 Berlin",
+        "Union 92",
+        "Blau-Weiß 90 Berlin",
+        "Blau-Weiß 1890 Berlin",
+        "SpVgg Blau-Weiß 90 Berlin"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "union92"
+      ],
+      "editorialNote": "Der Meister hieß Union 92 Berlin, nicht 1. FC Union Berlin. Blau-Weiß 90 Berlin ist als Bezug auf den historischen Fusionsverein von 1927 zugelassen. Das behauptet keinen eigenen Titel oder eine Rechtsnachfolge des 1992 neu gegründeten Vereins."
+    },
+    {
+      "id": "bte_club_091",
+      "name": "Freiburger FC",
+      "firstChampionshipYear": 1907,
+      "acceptedNames": [
+        "Freiburger FC",
+        "Freiburger FC 1897",
+        "FFC Freiburg"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ],
+      "editorialNote": "Nicht mit dem SC Freiburg verwechseln."
+    },
+    {
+      "id": "bte_club_108",
+      "name": "Viktoria 89 Berlin",
+      "firstChampionshipYear": 1908,
+      "acceptedNames": [
+        "Viktoria 89 Berlin",
+        "Viktoria Berlin",
+        "Viktoria 1889 Berlin",
+        "FC Viktoria 1889 Berlin",
+        "BFC Viktoria 1889",
+        "BFC Viktoria Berlin",
+        "Berliner TuFC Viktoria 1889",
+        "Berliner TuFC Viktoria 89"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "viktoria"
+      ],
+      "editorialNote": "Historischer Titelträger: Berliner TuFC Viktoria 1889. Der heutige FC Viktoria 1889 Berlin ist als zugehöriger Nachfolgeverein zugelassen. Titel vor 1903 werden in dieser Runde nicht benötigt oder mitgezählt."
+    },
+    {
+      "id": "bte_club_111",
+      "name": "FC Phönix Karlsruhe",
+      "firstChampionshipYear": 1909,
+      "acceptedNames": [
+        "FC Phönix Karlsruhe",
+        "Karlsruher FC Phönix",
+        "Phönix Karlsruhe",
+        "Karlsruher FC Phönix 1894",
+        "Karlsruher SC",
+        "KSC",
+        "Karlsruher Sport-Club",
+        "Karlsruher SC Mühlburg-Phönix"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "phoenix_ksc",
+        "ksc_kfv_distinction"
+      ],
+      "editorialNote": "Der Titel wurde von Phönix Karlsruhe gewonnen, einem Vorgängerverein des KSC. Phönix Karlsruhe und KSC zählen zusammen genau einmal. Der Karlsruher FV ist dagegen eine separate richtige Lösung."
+    },
+    {
+      "id": "bte_club_094",
+      "name": "Karlsruher FV",
+      "firstChampionshipYear": 1910,
+      "acceptedNames": [
+        "Karlsruher FV",
+        "Karlsruher FV 1891",
+        "Karlsruher Fußballverein",
+        "KFV"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "ksc_kfv_distinction"
+      ],
+      "editorialNote": "Eigenständiger Meisterverein; nicht identisch mit Phönix Karlsruhe / KSC."
+    },
+    {
+      "id": "bte_club_084",
+      "name": "Holstein Kiel",
+      "firstChampionshipYear": 1912,
+      "acceptedNames": [
+        "Holstein Kiel",
+        "KSV Holstein",
+        "KSV Holstein Kiel",
+        "Kieler SV Holstein",
+        "Kieler Sportvereinigung Holstein",
+        "FV Holstein Kiel"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_075",
+      "name": "SpVgg Greuther Fürth",
+      "firstChampionshipYear": 1914,
+      "acceptedNames": [
+        "SpVgg Greuther Fürth",
+        "SpVgg Fürth",
+        "Greuther Fürth",
+        "Spielvereinigung Fürth",
+        "Spielvereinigung Greuther Fürth"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "fuerth"
+      ],
+      "editorialNote": "Der erste Titel wurde unter dem Namen SpVgg Fürth gewonnen. Heutiger und historischer Name zählen zusammen einmal."
+    },
+    {
+      "id": "bte_club_040",
+      "name": "1. FC Nürnberg",
+      "firstChampionshipYear": 1920,
+      "acceptedNames": [
+        "1. FC Nürnberg",
+        "FC Nürnberg",
+        "Nürnberg",
+        "FCN",
+        "1. FCN",
+        "Der Club"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_021",
+      "name": "Hamburger SV",
+      "firstChampionshipYear": 1923,
+      "acceptedNames": [
+        "Hamburger SV",
+        "HSV",
+        "Hamburger Sport-Verein"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ],
+      "editorialNote": "1922 wird nicht als Meisterjahr gezählt; erster anerkannter Titel ist 1923."
+    },
+    {
+      "id": "bte_club_062",
+      "name": "Hertha BSC",
+      "firstChampionshipYear": 1930,
+      "acceptedNames": [
+        "Hertha BSC",
+        "Hertha BSC Berlin",
+        "Hertha Berlin",
+        "Hertha"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_002",
+      "name": "FC Bayern München",
+      "firstChampionshipYear": 1932,
+      "acceptedNames": [
+        "FC Bayern München",
+        "Bayern München",
+        "FC Bayern",
+        "Bayern",
+        "FCB",
+        "Bayern Munich",
+        "Bayern Munchen"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "bayern"
+      ],
+      "editorialNote": "Der erste deutsche Meistertitel war 1932, also vor Einführung der Bundesliga."
+    },
+    {
+      "id": "bte_club_072",
+      "name": "Fortuna Düsseldorf",
+      "firstChampionshipYear": 1933,
+      "acceptedNames": [
+        "Fortuna Düsseldorf",
+        "Fortuna 95 Düsseldorf",
+        "Düsseldorfer Fortuna",
+        "F95"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_053",
+      "name": "FC Schalke 04",
+      "firstChampionshipYear": 1934,
+      "acceptedNames": [
+        "FC Schalke 04",
+        "Schalke 04",
+        "Schalke",
+        "S04",
+        "FC Schalke"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_065",
+      "name": "Hannover 96",
+      "firstChampionshipYear": 1938,
+      "acceptedNames": [
+        "Hannover 96",
+        "Hannoverscher SV 96",
+        "Hannoverscher Sportverein von 1896",
+        "H96"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_118",
+      "name": "SK Rapid Wien",
+      "firstChampionshipYear": 1941,
+      "acceptedNames": [
+        "SK Rapid Wien",
+        "Rapid Wien",
+        "SK Rapid",
+        "Rapid Vienna"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "rapid"
+      ],
+      "editorialNote": "Zählt trotz des heutigen Standorts in Österreich: Nach der nationalsozialistischen Annexion Österreichs nahm Rapid am deutschen Wettbewerb teil und wurde 1941 deutscher Meister."
+    },
+    {
+      "id": "bte_club_097",
+      "name": "Dresdner SC",
+      "firstChampionshipYear": 1943,
+      "acceptedNames": [
+        "Dresdner SC",
+        "Dresdner SC 1898",
+        "Dresdner Sportclub",
+        "Dresdner Sport-Club",
+        "DSC Dresden"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ],
+      "editorialNote": "Nicht mit Dynamo Dresden verwechseln. Dessen DDR-Meisterschaften sind in dieser Runde nicht enthalten."
+    },
+    {
+      "id": "bte_club_085",
+      "name": "VfR Mannheim",
+      "firstChampionshipYear": 1949,
+      "acceptedNames": [
+        "VfR Mannheim",
+        "VfR Mannheim 1896",
+        "Verein für Rasenspiele Mannheim"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ],
+      "editorialNote": "Nicht mit SV Waldhof Mannheim verwechseln."
+    },
+    {
+      "id": "bte_club_015",
+      "name": "VfB Stuttgart",
+      "firstChampionshipYear": 1950,
+      "acceptedNames": [
+        "VfB Stuttgart",
+        "VfB Stuttgart 1893",
+        "Stuttgart"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_033",
+      "name": "1. FC Kaiserslautern",
+      "firstChampionshipYear": 1951,
+      "acceptedNames": [
+        "1. FC Kaiserslautern",
+        "FC Kaiserslautern",
+        "Kaiserslautern",
+        "FCK",
+        "1. FCK"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_078",
+      "name": "Rot-Weiss Essen",
+      "firstChampionshipYear": 1955,
+      "acceptedNames": [
+        "Rot-Weiss Essen",
+        "Rot-Weiß Essen",
+        "RW Essen",
+        "RWE",
+        "Rot-Weiss Essen 1907"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_008",
+      "name": "Borussia Dortmund",
+      "firstChampionshipYear": 1956,
+      "acceptedNames": [
+        "Borussia Dortmund",
+        "BVB",
+        "BV Borussia Dortmund",
+        "BV Borussia 09 Dortmund",
+        "Dortmund"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_059",
+      "name": "Eintracht Frankfurt",
+      "firstChampionshipYear": 1959,
+      "acceptedNames": [
+        "Eintracht Frankfurt",
+        "SG Eintracht Frankfurt",
+        "SGE"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ]
+    },
+    {
+      "id": "bte_club_031",
+      "name": "1. FC Köln",
+      "firstChampionshipYear": 1962,
+      "acceptedNames": [
+        "1. FC Köln",
+        "FC Köln",
+        "Köln",
+        "Effzeh",
+        "1. FCKöln"
+      ],
+      "sourceIds": [
+        "complete_list"
+      ],
+      "editorialNote": "Der erste deutsche Meistertitel war 1962; der erste Bundesliga-Meistertitel folgte 1964."
+    },
+    {
+      "id": "bte_club_018",
+      "name": "SV Werder Bremen",
+      "firstChampionshipYear": 1965,
+      "acceptedNames": [
+        "SV Werder Bremen",
+        "Werder Bremen",
+        "Werder",
+        "SVW",
+        "Bremen"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "bundesliga"
+      ]
+    },
+    {
+      "id": "bte_club_052",
+      "name": "TSV 1860 München",
+      "firstChampionshipYear": 1966,
+      "acceptedNames": [
+        "TSV 1860 München",
+        "1860 München",
+        "1860",
+        "TSV 1860",
+        "TSV München 1860",
+        "Sechzig München",
+        "1860 Munchen"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "bundesliga"
+      ]
+    },
+    {
+      "id": "bte_club_046",
+      "name": "Eintracht Braunschweig",
+      "firstChampionshipYear": 1967,
+      "acceptedNames": [
+        "Eintracht Braunschweig",
+        "Braunschweiger TSV Eintracht",
+        "Braunschweig",
+        "BTSV"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "bundesliga"
+      ]
+    },
+    {
+      "id": "bte_club_028",
+      "name": "Borussia Mönchengladbach",
+      "firstChampionshipYear": 1970,
+      "acceptedNames": [
+        "Borussia Mönchengladbach",
+        "Borussia Mönchen-Gladbach",
+        "Borussia Monchengladbach",
+        "Borussia VfL Mönchengladbach",
+        "VfL Borussia Mönchengladbach",
+        "Mönchengladbach",
+        "Gladbach",
+        "BMG"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "bundesliga"
+      ]
+    },
+    {
+      "id": "bte_club_043",
+      "name": "VfL Wolfsburg",
+      "firstChampionshipYear": 2009,
+      "acceptedNames": [
+        "VfL Wolfsburg",
+        "VfL Wolfsburg 1945",
+        "Wolfsburg"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "bundesliga"
+      ]
+    },
+    {
+      "id": "bte_club_009",
+      "name": "Bayer 04 Leverkusen",
+      "firstChampionshipYear": 2024,
+      "acceptedNames": [
+        "Bayer 04 Leverkusen",
+        "Bayer Leverkusen",
+        "Bayer 04",
+        "Leverkusen"
+      ],
+      "sourceIds": [
+        "complete_list",
+        "leverkusen"
+      ]
+    }
+  ],
+  "sources": {
+    "complete_list": {
+      "publisher": "RSSSF",
+      "title": "(West) Germany – List of Champions",
+      "authors": "Karel Stokkermans und Andreas Werner",
+      "url": "https://www.rsssf.org/tablesd/duitchamp.html",
+      "sourceUpdatedOn": "2026-06-18",
+      "use": "Vollständige Meisterliste 1903–2026; erster Meistertitel jedes Vereins; Abgleich aller 30 Lösungen."
+    },
+    "bundesliga": {
+      "publisher": "Bundesliga / DFL",
+      "title": "Alle Deutschen Meister der Bundesliga",
+      "url": "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+      "use": "Zusätzlicher Abgleich von Bundesliga-Meisterjahren; nicht alleinige Quelle für die jüngsten Spielzeiten."
+    },
+    "bayern": {
+      "publisher": "FC Bayern München",
+      "title": "Erfolge",
+      "url": "https://fcbayern.com/de/club/erfolge",
+      "use": "Erster Meistertitel 1931/32 und jüngster abgeschlossener Meistertitel 2025/26."
+    },
+    "leipzig_first": {
+      "publisher": "DFB",
+      "title": "Historie: Chronik zu 125 Jahren DFB",
+      "url": "https://www.dfb.de/historie",
+      "use": "VfB Leipzig als erster deutscher Fußballmeister 1903."
+    },
+    "leipzig_successor": {
+      "publisher": "1. FC Lokomotive Leipzig",
+      "title": "Geschichte",
+      "url": "https://lok-leipzig.com/verein/geschichte",
+      "use": "Zuordnung von VfB Leipzig und Lokomotive Leipzig als eine Lösung."
+    },
+    "union92": {
+      "publisher": "Blau-Weiß 90 Berlin",
+      "title": "Historie",
+      "url": "https://www.blauweiss90berlin.de/historie/",
+      "use": "Union 92: Meister 1905; historischer Fusionsverein Blau-Weiß 90 ab 1927; Abgrenzung zur Neugründung von 1992."
+    },
+    "viktoria": {
+      "publisher": "FC Carl Zeiss Jena",
+      "title": "FC Viktoria 1889 Berlin",
+      "url": "https://www.fc-carlzeiss-jena.de/news/club-profis/details/fc-viktoria-1889-berlin-fc-carl-zeiss-jena.html.html",
+      "use": "Meister 1908 und 1911; historische und heutige Vereinsnamen."
+    },
+    "phoenix_ksc": {
+      "publisher": "Karlsruher SC",
+      "title": "100 Jahre Deutscher Meister",
+      "url": "https://www.ksc.de/profis/saison/news/show/article/100-jahre-deutscher-meister/",
+      "use": "Phönix Karlsruhe als Meister 1909 und Zuordnung zum KSC."
+    },
+    "ksc_kfv_distinction": {
+      "publisher": "Karlsruher SC",
+      "title": "KSC II und Karlsruher FV schreiben legendäre Stadtderby-Geschichte fort",
+      "url": "https://www.ksc.de/profis/saison/news/show/article/fussballstadt-karlsruhe-ksc-ii-und-karlsruher-fv-schreiben-legendaere-stadtderby-geschichte-fort-1/",
+      "use": "Phönix Karlsruhe 1909 und Karlsruher FV 1910 sind zwei verschiedene Meistervereine."
+    },
+    "fuerth": {
+      "publisher": "SpVgg Greuther Fürth",
+      "title": "Vereinsgeschichte",
+      "url": "https://www.sgf1903.de/das-kleeblatt/historie/vereinsgeschichte",
+      "use": "Erster Meistertitel 1914 unter dem Namen SpVgg Fürth."
+    },
+    "rapid": {
+      "publisher": "SK Rapid",
+      "title": "Der SK Rapid im Nationalsozialismus",
+      "url": "https://www.skrapid.at/aktuelles/1939/01/der-sk-rapid-im-nationalsozialismus/",
+      "use": "Deutscher Meister 1941; historischer Kontext der Annexion Österreichs."
+    },
+    "leverkusen": {
+      "publisher": "Bayer 04 Leverkusen",
+      "title": "Alle Bayer 04-Erfolge, -Spieler und -Trainer",
+      "url": "https://www.bayer04.de/de-de/page/historie/alle-bayer-04-erfolge-spieler-und-trainer",
+      "use": "Meister 2024."
+    }
+  },
+  "validation": {
+    "distinctAnswerCount": 30,
+    "clubIdsReusedFromStage1": true,
+    "normalizedAliasCollisionCount": 0,
+    "matchesAnyStage1Distractor": false,
+    "normalizedAliasCount": 147,
+    "matchingTests": [
+      {
+        "input": "BVB",
+        "expectedClubId": "bte_club_008"
+      },
+      {
+        "input": "  BAYERN MÜNCHEN  ",
+        "expectedClubId": "bte_club_002"
+      },
+      {
+        "input": "Bayern Muenchen",
+        "expectedClubId": "bte_club_002"
+      },
+      {
+        "input": "Bayer 04",
+        "expectedClubId": "bte_club_009"
+      },
+      {
+        "input": "HSV",
+        "expectedClubId": "bte_club_021"
+      },
+      {
+        "input": "1.FC Nürnberg",
+        "expectedClubId": "bte_club_040"
+      },
+      {
+        "input": "Rot Weiß Essen",
+        "expectedClubId": "bte_club_078"
+      },
+      {
+        "input": "Phönix Karlsruhe",
+        "expectedClubId": "bte_club_111"
+      },
+      {
+        "input": "KSC",
+        "expectedClubId": "bte_club_111"
+      },
+      {
+        "input": "KFV",
+        "expectedClubId": "bte_club_094"
+      },
+      {
+        "input": "Lok Leipzig",
+        "expectedClubId": "bte_club_102"
+      },
+      {
+        "input": "VfB Leipzig",
+        "expectedClubId": "bte_club_102"
+      },
+      {
+        "input": "SpVgg Fuerth",
+        "expectedClubId": "bte_club_075"
+      },
+      {
+        "input": "Blau-Weiß 90 Berlin",
+        "expectedClubId": "bte_club_113"
+      },
+      {
+        "input": "FC Viktoria 1889 Berlin",
+        "expectedClubId": "bte_club_108"
+      },
+      {
+        "input": "Rapid Wien",
+        "expectedClubId": "bte_club_118"
+      },
+      {
+        "input": "1. FC Union Berlin",
+        "expectedClubId": null
+      },
+      {
+        "input": "Union Berlin",
+        "expectedClubId": null
+      },
+      {
+        "input": "SC Freiburg",
+        "expectedClubId": null
+      },
+      {
+        "input": "Dynamo Dresden",
+        "expectedClubId": null
+      },
+      {
+        "input": "SG Dynamo Dresden",
+        "expectedClubId": null
+      },
+      {
+        "input": "BFC Dynamo",
+        "expectedClubId": null
+      },
+      {
+        "input": "SV Waldhof Mannheim",
+        "expectedClubId": null
+      },
+      {
+        "input": "RB Leipzig",
+        "expectedClubId": null
+      },
+      {
+        "input": "VfL Stuttgart",
+        "expectedClubId": null
+      },
+      {
+        "input": "VfB Wolfsburg",
+        "expectedClubId": null
+      },
+      {
+        "input": "Berlin",
+        "expectedClubId": null
+      },
+      {
+        "input": "München",
+        "expectedClubId": null
+      },
+      {
+        "input": "Karlsruhe",
+        "expectedClubId": null
+      },
+      {
+        "input": "Freiburg",
+        "expectedClubId": null
+      },
+      {
+        "input": "Mannheim",
+        "expectedClubId": null
+      },
+      {
+        "input": "Dresden",
+        "expectedClubId": null
+      },
+      {
+        "input": "Leipzig",
+        "expectedClubId": null
+      },
+      {
+        "input": "Borussia",
+        "expectedClubId": null
+      },
+      {
+        "input": "Eintracht",
+        "expectedClubId": null
+      },
+      {
+        "input": "Union",
+        "expectedClubId": null
+      },
+      {
+        "input": "Viktoria",
+        "expectedClubId": null
+      },
+      {
+        "input": "Fortuna",
+        "expectedClubId": null
+      },
+      {
+        "input": "VfB",
+        "expectedClubId": null
+      },
+      {
+        "input": "VfL",
+        "expectedClubId": null
+      },
+      {
+        "input": "Bayer",
+        "expectedClubId": null
+      }
+    ],
+    "duplicateTests": [
+      {
+        "inputs": [
+          "VfB Leipzig",
+          "Lok Leipzig"
+        ],
+        "expectedUniqueAnswerCount": 1
+      },
+      {
+        "inputs": [
+          "Phönix Karlsruhe",
+          "KSC"
+        ],
+        "expectedUniqueAnswerCount": 1
+      },
+      {
+        "inputs": [
+          "KSC",
+          "KFV"
+        ],
+        "expectedUniqueAnswerCount": 2
+      },
+      {
+        "inputs": [
+          "SpVgg Fürth",
+          "SpVgg Greuther Fürth"
+        ],
+        "expectedUniqueAnswerCount": 1
+      },
+      {
+        "inputs": [
+          "Union 92 Berlin",
+          "Blau-Weiß 90 Berlin"
+        ],
+        "expectedUniqueAnswerCount": 1
+      }
+    ]
+  }
+}
+

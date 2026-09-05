@@ -8,6 +8,7 @@ import { PrimaryButton } from '@/components/ui/primary-button';
 import { mockCareerQuestion } from '@/features/quiz/data/mock-questions';
 import { isCorrectAnswer } from '@/features/quiz/domain/quiz';
 import { BundesligaChampionsLevelOneScreen } from '@/features/quiz/screens/bundesliga-champions-level-one-screen';
+import { BundesligaChampionsLevelTwoScreen } from '@/features/quiz/screens/bundesliga-champions-level-two-screen';
 import { colors, radii, spacing } from '@/theme/tokens';
 
 export function PlayScreen() {
@@ -16,6 +17,14 @@ export function PlayScreen() {
     categoryId?: string;
     level?: string;
   }>();
+
+  if (
+    params.leagueId === 'de-1' &&
+    params.categoryId === 'champions' &&
+    params.level === '2'
+  ) {
+    return <BundesligaChampionsLevelTwoScreen />;
+  }
 
   if (
     params.leagueId === 'de-1' &&
