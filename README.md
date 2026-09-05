@@ -16,6 +16,16 @@ Die erste Mock-App enthält:
 
 Voraussetzungen: Node.js 24 LTS und die Expo-Go-App auf dem Telefon.
 
+### Einfach per Doppelklick
+
+Im Projektordner die Datei **SERVER STARTEN.cmd** doppelt anklicken. Der Button prüft Node.js
+und die App-Pakete, startet den Expo-Go-Server und zeigt anschließend den QR-Code an.
+
+Zum Beenden im Serverfenster `Strg+C` drücken. Für die Browser-Vorschau im laufenden
+Serverfenster `W` drücken.
+
+### Alternativ im Terminal
+
 ```powershell
 cd "C:\Users\nitscheASP\Documents\Codex\2026-09-05\referenced-chatgpt-conversation-this-is-an\outputs\be-the-expert"
 nvm use 24.20.0
