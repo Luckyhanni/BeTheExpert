@@ -1,3 +1,4 @@
+import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -6,9 +7,28 @@ import { Card } from '@/components/ui/card';
 import { PrimaryButton } from '@/components/ui/primary-button';
 import { mockCareerQuestion } from '@/features/quiz/data/mock-questions';
 import { isCorrectAnswer } from '@/features/quiz/domain/quiz';
+import { BundesligaChampionsLevelOneScreen } from '@/features/quiz/screens/bundesliga-champions-level-one-screen';
 import { colors, radii, spacing } from '@/theme/tokens';
 
 export function PlayScreen() {
+  const params = useLocalSearchParams<{
+    leagueId?: string;
+    categoryId?: string;
+    level?: string;
+  }>();
+
+  if (
+    params.leagueId === 'de-1' &&
+    params.categoryId === 'champions' &&
+    params.level === '1'
+  ) {
+    return <BundesligaChampionsLevelOneScreen />;
+  }
+
+  return <MockPlayScreen />;
+}
+
+function MockPlayScreen() {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const hasAnswered = selectedOptionId !== null;
   const isCorrect = hasAnswered && isCorrectAnswer(mockCareerQuestion, selectedOptionId);

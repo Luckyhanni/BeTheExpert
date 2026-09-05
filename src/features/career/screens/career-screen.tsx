@@ -1,4 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -243,6 +244,8 @@ function CategoryLevels({
   league: CareerLeague;
   onBack: () => void;
 }) {
+  const router = useRouter();
+
   return (
     <AppScreen>
       <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
@@ -262,23 +265,39 @@ function CategoryLevels({
 
       <View style={styles.levelList}>
         {category.levels.map((level) => {
-          const isAvailable = level.level === 1;
+          const isPlayable =
+            league.id === 'de-1' && category.id === 'champions' && level.level === 1;
+          const isLocked = level.level > 1;
 
           return (
-            <View
+            <Pressable
               accessibilityLabel={`Level ${level.level}: ${level.title}`}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: !isPlayable }}
+              disabled={!isPlayable}
               key={level.level}
-              style={[styles.levelCard, !isAvailable && styles.levelCardLocked]}>
-              <View style={[styles.levelNumber, isAvailable && styles.levelNumberAvailable]}>
-                <Text style={[styles.levelNumberText, isAvailable && styles.levelNumberTextAvailable]}>
+              onPress={() =>
+                router.push({
+                  pathname: '/play',
+                  params: { leagueId: league.id, categoryId: category.id, level: level.level },
+                })
+              }
+              style={({ pressed }) => [
+                styles.levelCard,
+                isPlayable && styles.levelCardPlayable,
+                isLocked && styles.levelCardLocked,
+                pressed && styles.pressed,
+              ]}>
+              <View style={[styles.levelNumber, isPlayable && styles.levelNumberAvailable]}>
+                <Text style={[styles.levelNumberText, isPlayable && styles.levelNumberTextAvailable]}>
                   {level.level}
                 </Text>
               </View>
               <View style={styles.levelCopy}>
                 <View style={styles.levelTitleRow}>
                   <Text style={styles.levelTitle}>{level.title}</Text>
-                  <Text style={isAvailable ? styles.levelStatusAvailable : styles.levelStatusLocked}>
-                    {isAvailable ? 'OFFEN' : 'GESPERRT'}
+                  <Text style={isPlayable ? styles.levelStatusAvailable : styles.levelStatusLocked}>
+                    {isPlayable ? 'SPIELEN' : isLocked ? 'GESPERRT' : 'FRAGEN FOLGEN'}
                   </Text>
                 </View>
                 <Text style={styles.levelMode}>
@@ -292,7 +311,7 @@ function CategoryLevels({
                   </Text>
                 </View>
               </View>
-            </View>
+            </Pressable>
           );
         })}
       </View>
@@ -481,9 +500,10 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     borderRadius: radii.md,
     borderWidth: 1,
-    borderColor: colors.accent,
+    borderColor: colors.border,
     backgroundColor: colors.surface,
   },
+  levelCardPlayable: { borderColor: colors.accent },
   levelCardLocked: { borderColor: colors.border, opacity: 0.62 },
   levelNumber: {
     width: 48,

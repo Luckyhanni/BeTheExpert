@@ -1,0 +1,1212 @@
+{
+  "schemaVersion": "1.0",
+  "app": "Be the Expert",
+  "category": "Deutsche Fußballmeister",
+  "language": "de-DE",
+  "verifiedAsOf": "2026-09-05",
+  "scope": {
+    "included": "Höchste deutsche Fußballmeisterschaft der Männer seit 1903, einschließlich der Meisterschaften vor Einführung der Bundesliga.",
+    "excluded": [
+      "Eigenständige DDR-Meisterschaft",
+      "Frauenfußball",
+      "Jugendfußball",
+      "Deutsche Amateurmeisterschaft",
+      "Regionale und unterklassige Meisterschaften",
+      "Pokalsiege"
+    ],
+    "historicalNamesAllowed": true,
+    "strictBundesligaPool": "bundesliga_meister_seit_1963",
+    "exampleYearMeaning": "Ein belegtes Meisterjahr; keine vollständige Liste aller Titel und nicht zwingend das erste oder letzte Titeljahr."
+  },
+  "integrity": {
+    "questionCount": 30,
+    "optionCount": 120,
+    "distinctClubCount": 120,
+    "fictionalClubCount": 0,
+    "correctOptionsPerQuestion": 1,
+    "correctAnswerLetterDistribution": {
+      "A": 8,
+      "B": 8,
+      "C": 7,
+      "D": 7
+    }
+  },
+  "sourcesForCompleteChampionSet": [
+    "https://www.rsssf.org/tablesd/duitchamp.html",
+    "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+    "https://fcbayern.com/de/club/erfolge/deutscher-meister/saison-2025-2026"
+  ],
+  "questions": [
+    {
+      "id": "bte_deutscher_meister_001",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_001",
+          "label": "A",
+          "text": "RB Leipzig",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_002",
+          "label": "B",
+          "text": "FC Bayern München",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_003",
+          "label": "C",
+          "text": "TSG 1899 Hoffenheim",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_004",
+          "label": "D",
+          "text": "FC Augsburg",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_002",
+      "exampleChampionshipYear": 1969,
+      "explanation": "FC Bayern München wurde 1969 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_002",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_005",
+          "label": "A",
+          "text": "MSV Duisburg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_006",
+          "label": "B",
+          "text": "VfL Bochum",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_007",
+          "label": "C",
+          "text": "Arminia Bielefeld",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_008",
+          "label": "D",
+          "text": "Borussia Dortmund",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_008",
+      "exampleChampionshipYear": 2012,
+      "explanation": "Borussia Dortmund wurde 2012 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_003",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_009",
+          "label": "A",
+          "text": "Bayer 04 Leverkusen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_010",
+          "label": "B",
+          "text": "1. FSV Mainz 05",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_011",
+          "label": "C",
+          "text": "SV Darmstadt 98",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_012",
+          "label": "D",
+          "text": "SV Wehen Wiesbaden",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_009",
+      "exampleChampionshipYear": 2024,
+      "explanation": "Bayer 04 Leverkusen wurde 2024 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bayer04.de/de-de/page/historie/alle-bayer-04-erfolge-spieler-und-trainer",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_004",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_013",
+          "label": "A",
+          "text": "Stuttgarter Kickers",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_014",
+          "label": "B",
+          "text": "SSV Reutlingen 05",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_015",
+          "label": "C",
+          "text": "VfB Stuttgart",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_016",
+          "label": "D",
+          "text": "SSV Ulm 1846",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_015",
+      "exampleChampionshipYear": 2007,
+      "explanation": "VfB Stuttgart wurde 2007 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_005",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_017",
+          "label": "A",
+          "text": "VfL Osnabrück",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_018",
+          "label": "B",
+          "text": "SV Werder Bremen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_019",
+          "label": "C",
+          "text": "SV Meppen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_020",
+          "label": "D",
+          "text": "VfB Oldenburg",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_018",
+      "exampleChampionshipYear": 2004,
+      "explanation": "SV Werder Bremen wurde 2004 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_006",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_021",
+          "label": "A",
+          "text": "Hamburger SV",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_022",
+          "label": "B",
+          "text": "FC St. Pauli",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_023",
+          "label": "C",
+          "text": "VfB Lübeck",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_024",
+          "label": "D",
+          "text": "FC Eintracht Norderstedt",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_021",
+      "exampleChampionshipYear": 1983,
+      "explanation": "Hamburger SV wurde 1983 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_007",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_025",
+          "label": "A",
+          "text": "Alemannia Aachen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_026",
+          "label": "B",
+          "text": "KFC Uerdingen 05",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_027",
+          "label": "C",
+          "text": "Wuppertaler SV",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_028",
+          "label": "D",
+          "text": "Borussia Mönchengladbach",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_028",
+      "exampleChampionshipYear": 1977,
+      "explanation": "Borussia Mönchengladbach wurde 1977 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_008",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_029",
+          "label": "A",
+          "text": "SC Fortuna Köln",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_030",
+          "label": "B",
+          "text": "FC Viktoria Köln",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_031",
+          "label": "C",
+          "text": "1. FC Köln",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_032",
+          "label": "D",
+          "text": "Bonner SC",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_031",
+      "exampleChampionshipYear": 1978,
+      "explanation": "1. FC Köln wurde 1978 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_009",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_033",
+          "label": "A",
+          "text": "1. FC Kaiserslautern",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_034",
+          "label": "B",
+          "text": "1. FC Saarbrücken",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_035",
+          "label": "C",
+          "text": "SV Elversberg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_036",
+          "label": "D",
+          "text": "FC 08 Homburg",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_033",
+      "exampleChampionshipYear": 1998,
+      "explanation": "1. FC Kaiserslautern wurde 1998 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_010",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_037",
+          "label": "A",
+          "text": "SSV Jahn Regensburg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_038",
+          "label": "B",
+          "text": "Würzburger Kickers",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_039",
+          "label": "C",
+          "text": "FC Ingolstadt 04",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_040",
+          "label": "D",
+          "text": "1. FC Nürnberg",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_040",
+      "exampleChampionshipYear": 1968,
+      "explanation": "1. FC Nürnberg wurde 1968 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_011",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_041",
+          "label": "A",
+          "text": "TSV Havelse",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_042",
+          "label": "B",
+          "text": "SC Paderborn 07",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_043",
+          "label": "C",
+          "text": "VfL Wolfsburg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_044",
+          "label": "D",
+          "text": "SV Sandhausen",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_043",
+      "exampleChampionshipYear": 2009,
+      "explanation": "VfL Wolfsburg wurde 2009 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_012",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_045",
+          "label": "A",
+          "text": "FC Energie Cottbus",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_046",
+          "label": "B",
+          "text": "Eintracht Braunschweig",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_047",
+          "label": "C",
+          "text": "Kickers Emden",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_048",
+          "label": "D",
+          "text": "SV Rödinghausen",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_046",
+      "exampleChampionshipYear": 1967,
+      "explanation": "Eintracht Braunschweig wurde 1967 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_013",
+      "pool": "bundesliga_meister_seit_1963",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_049",
+          "label": "A",
+          "text": "SpVgg Unterhaching",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_050",
+          "label": "B",
+          "text": "TSV 1860 Rosenheim",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_051",
+          "label": "C",
+          "text": "SV Wacker Burghausen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_052",
+          "label": "D",
+          "text": "TSV 1860 München",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_052",
+      "exampleChampionshipYear": 1966,
+      "explanation": "TSV 1860 München wurde 1966 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.bundesliga.com/de/bundesliga/news/liste-deutscher-meister-bundesliga-koln-bayern-nurnberg-dortmund-bremen-kaiserslautern-23908",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_014",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_053",
+          "label": "A",
+          "text": "FC Schalke 04",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_054",
+          "label": "B",
+          "text": "Preußen Münster",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_055",
+          "label": "C",
+          "text": "Rot-Weiß Oberhausen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_056",
+          "label": "D",
+          "text": "Sportfreunde Lotte",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_053",
+      "exampleChampionshipYear": 1958,
+      "explanation": "FC Schalke 04 wurde 1958 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://schalke04.de/inside/manfred-kreuz-90-geburtstag/",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_015",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_057",
+          "label": "A",
+          "text": "Kickers Offenbach",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_058",
+          "label": "B",
+          "text": "FSV Frankfurt",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_059",
+          "label": "C",
+          "text": "Eintracht Frankfurt",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_060",
+          "label": "D",
+          "text": "KSV Hessen Kassel",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_059",
+      "exampleChampionshipYear": 1959,
+      "explanation": "Eintracht Frankfurt wurde 1959 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://museum.eintracht.de/erfolge-rekorde/",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_016",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_061",
+          "label": "A",
+          "text": "Tennis Borussia Berlin",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_062",
+          "label": "B",
+          "text": "Hertha BSC",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_063",
+          "label": "C",
+          "text": "Berliner AK 07",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_064",
+          "label": "D",
+          "text": "Hertha Zehlendorf",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_062",
+      "exampleChampionshipYear": 1930,
+      "explanation": "Hertha BSC wurde 1930 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.herthabsc.com/de/historie/erfolge",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_017",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_065",
+          "label": "A",
+          "text": "Hannover 96",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_066",
+          "label": "B",
+          "text": "1. SC Göttingen 05",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_067",
+          "label": "C",
+          "text": "VfV 06 Hildesheim",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_068",
+          "label": "D",
+          "text": "SV Wilhelmshaven",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_065",
+      "exampleChampionshipYear": 1954,
+      "explanation": "Hannover 96 wurde 1954 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.hannover96.de/klub-historie/historie/erfolge/deutsche-meisterschaft-1954",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_018",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_069",
+          "label": "A",
+          "text": "Schwarz-Weiß Essen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_070",
+          "label": "B",
+          "text": "Sportfreunde Siegen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_071",
+          "label": "C",
+          "text": "SSVg Velbert",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_072",
+          "label": "D",
+          "text": "Fortuna Düsseldorf",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_072",
+      "exampleChampionshipYear": 1933,
+      "explanation": "Fortuna Düsseldorf wurde 1933 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.f95.de/historie1933-1962",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_019",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_073",
+          "label": "A",
+          "text": "SpVgg Bayreuth",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_074",
+          "label": "B",
+          "text": "FC Eintracht Bamberg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_075",
+          "label": "C",
+          "text": "SpVgg Greuther Fürth",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_076",
+          "label": "D",
+          "text": "1. FC Schweinfurt 05",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_075",
+      "exampleChampionshipYear": 1914,
+      "explanation": "Der Verein wurde 1914 unter dem damaligen Namen SpVgg Fürth deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.sgf1903.de/das-kleeblatt/historie/vereinsgeschichte",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_020",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_077",
+          "label": "A",
+          "text": "FC Gütersloh",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_078",
+          "label": "B",
+          "text": "Rot-Weiss Essen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_079",
+          "label": "C",
+          "text": "SG Wattenscheid 09",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_080",
+          "label": "D",
+          "text": "Westfalia Herne",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_078",
+      "exampleChampionshipYear": 1955,
+      "explanation": "Rot-Weiss Essen wurde 1955 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.rot-weiss-essen.de/2014/06/29/rot-weisser-rahnsinn-auf-der-homepage/",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_021",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_081",
+          "label": "A",
+          "text": "SC Weiche Flensburg 08",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_082",
+          "label": "B",
+          "text": "1. FC Phönix Lübeck",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_083",
+          "label": "C",
+          "text": "Altona 93",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_084",
+          "label": "D",
+          "text": "Holstein Kiel",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_084",
+      "exampleChampionshipYear": 1912,
+      "explanation": "Holstein Kiel wurde 1912 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.holstein-kiel.de/vereinshistorie/",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_022",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_085",
+          "label": "A",
+          "text": "VfR Mannheim",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_086",
+          "label": "B",
+          "text": "SV Waldhof Mannheim",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_087",
+          "label": "C",
+          "text": "VfL Neckarau",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_088",
+          "label": "D",
+          "text": "FV 09 Weinheim",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_085",
+      "exampleChampionshipYear": 1949,
+      "explanation": "VfR Mannheim wurde 1949 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://archiv.vfr-mannheim.de/aktuelles/events/meisterschale",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_023",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_089",
+          "label": "A",
+          "text": "SC Freiburg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_090",
+          "label": "B",
+          "text": "Offenburger FV",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_091",
+          "label": "C",
+          "text": "Freiburger FC",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_092",
+          "label": "D",
+          "text": "Bahlinger SC",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_091",
+      "exampleChampionshipYear": 1907,
+      "explanation": "Freiburger FC wurde 1907 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.ffc.de/klubgeschichte/",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_024",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_093",
+          "label": "A",
+          "text": "FC Nöttingen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_094",
+          "label": "B",
+          "text": "Karlsruher FV",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_095",
+          "label": "C",
+          "text": "VfR Aalen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_096",
+          "label": "D",
+          "text": "TSG Balingen",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_094",
+      "exampleChampionshipYear": 1910,
+      "explanation": "Karlsruher FV wurde 1910 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://karlsruher-fv.de/",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_025",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_097",
+          "label": "A",
+          "text": "Dresdner SC",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_098",
+          "label": "B",
+          "text": "Bischofswerdaer FV 08",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_099",
+          "label": "C",
+          "text": "FC Eilenburg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_100",
+          "label": "D",
+          "text": "VfB Auerbach",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_097",
+      "exampleChampionshipYear": 1944,
+      "explanation": "Dresdner SC wurde 1944 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://datencenter.dfb.de/datencenter/deutsche-meisterschaft/1943-1944/0/2032263",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_026",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_101",
+          "label": "A",
+          "text": "SSV Markranstädt",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_102",
+          "label": "B",
+          "text": "VfB Leipzig",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_103",
+          "label": "C",
+          "text": "FC Grimma",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_104",
+          "label": "D",
+          "text": "ZFC Meuselwitz",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_102",
+      "exampleChampionshipYear": 1903,
+      "explanation": "VfB Leipzig wurde 1903 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.dfb.de/historie",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_027",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_105",
+          "label": "A",
+          "text": "BFC Preussen",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_106",
+          "label": "B",
+          "text": "SV Lichtenberg 47",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_107",
+          "label": "C",
+          "text": "FSV Optik Rathenow",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_108",
+          "label": "D",
+          "text": "Viktoria 89 Berlin",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_108",
+      "exampleChampionshipYear": 1908,
+      "explanation": "Viktoria 89 Berlin wurde 1908 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.fc-carlzeiss-jena.de/news/club-profis/details/fc-carl-zeiss-jena-fc-viktoria-1889-berlin-2.html.html",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_028",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_109",
+          "label": "A",
+          "text": "1. FC Pforzheim",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_110",
+          "label": "B",
+          "text": "FV Ravensburg",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_111",
+          "label": "C",
+          "text": "FC Phönix Karlsruhe",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_112",
+          "label": "D",
+          "text": "SGV Freiberg",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_111",
+      "exampleChampionshipYear": 1909,
+      "explanation": "FC Phönix Karlsruhe wurde 1909 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.dhm.de/lemo/jahreschronik/1909",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_029",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_113",
+          "label": "A",
+          "text": "Union 92 Berlin",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_114",
+          "label": "B",
+          "text": "VSG Altglienicke",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_115",
+          "label": "C",
+          "text": "FSV Luckenwalde",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_116",
+          "label": "D",
+          "text": "SV Babelsberg 03",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_113",
+      "exampleChampionshipYear": 1905,
+      "explanation": "Union 92 Berlin wurde 1905 deutscher Fußballmeister der Männer.",
+      "sources": [
+        "https://www.gedenktafeln-in-berlin.de/gedenktafeln/detail/fussballroute-19-union-92-sportplatz/3383",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    },
+    {
+      "id": "bte_deutscher_meister_030",
+      "pool": "weitere_historische_deutsche_meister",
+      "question": "Wer wurde schon deutscher Meister?",
+      "options": [
+        {
+          "id": "bte_club_117",
+          "label": "A",
+          "text": "First Vienna FC",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_118",
+          "label": "B",
+          "text": "SK Rapid Wien",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_119",
+          "label": "C",
+          "text": "SK Admira Wien",
+          "isFictional": false
+        },
+        {
+          "id": "bte_club_120",
+          "label": "D",
+          "text": "Wiener Sport-Club",
+          "isFictional": false
+        }
+      ],
+      "correctOptionId": "bte_club_118",
+      "exampleChampionshipYear": 1941,
+      "explanation": "SK Rapid Wien wurde 1941 deutscher Fußballmeister der Männer. Der österreichische Verein nahm nach der nationalsozialistischen Annexion Österreichs am deutschen Wettbewerb teil.",
+      "sources": [
+        "https://www.skrapid.at/verein/chronik/",
+        "https://www.rsssf.org/tablesd/duitchamp.html"
+      ],
+      "verifiedAsOf": "2026-09-05"
+    }
+  ]
+}
+
