@@ -1,11 +1,5 @@
-import { PlaceholderScreen } from '@/features/placeholder/screens/placeholder-screen';
+import { CareerScreen } from '@/features/career/screens/career-screen';
 
 export default function CareerRoute() {
-  return (
-    <PlaceholderScreen
-      description="Hier entsteht dein Weg vom Reporter bis zum weltweiten Fußballexperten."
-      symbol="▥"
-      title="Karriere"
-    />
-  );
+  return <CareerScreen />;
 }
