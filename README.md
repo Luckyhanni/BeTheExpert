@@ -1,56 +1,92 @@
-# Welcome to your Expo app 👋
+# Be the Expert
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Mobile Fußball-Wissensspiel für Android und iOS, gebaut mit React Native, Expo SDK 57 und TypeScript.
 
-## Get started
+Die erste Mock-App enthält:
 
-1. Install dependencies
+- ein Karriere-Dashboard mit XP, Expertenwertung und Daily Challenge
+- ein spielbares Karrierepfad-Quiz mit Antwortfeedback
+- ein Expertenprofil mit Fachgebieten
+- reine, getestete Quiz- und Punkte-Logik
+- eine vorbereitete Supabase-Anbindung mit sicherem Mock-Fallback
+- EAS-Profile für Development-, Preview- und Production-Builds
 
-   ```bash
-   npm install
-   ```
+## In zwei Minuten starten
 
-2. Start the app
+Voraussetzungen: Node.js 24 LTS und die Expo-Go-App auf dem Telefon.
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```powershell
+cd "C:\Users\nitscheASP\Documents\Codex\2026-09-05\referenced-chatgpt-conversation-this-is-an\outputs\be-the-expert"
+nvm use 24.20.0
+npm install
+npm run start:go
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Danach den QR-Code öffnen:
 
-### Other setup steps
+- Android: Expo Go öffnen und „Scan QR code“ wählen.
+- iPhone: QR-Code mit der normalen Kamera scannen.
+- PC-Browser: Im laufenden Expo-Terminal `w` drücken.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Telefon und PC sollten im selben WLAN sein. Falls die Verbindung scheitert:
 
-## Learn more
+```powershell
+npm run start:tunnel
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Wichtige Befehle
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```powershell
+npm run start:go          # schnellster Start mit Expo Go
+npm run start:dev         # Development Build verbinden
+npm run android           # Expo Go im laufenden Android-Emulator öffnen
+npm run android:native    # lokalen Android Development Build erzeugen
+npm run web               # Browser-Vorschau
+npm run check             # TypeScript, Lint und Tests
+npm run doctor            # Expo-Konfiguration/Abhängigkeiten prüfen
+```
 
-## Join the community
+Die vollständige Einrichtung für Windows, Android Studio, echte Geräte, iPhone, EAS, GitHub und Supabase steht in [docs/WINDOWS_SETUP.md](docs/WINDOWS_SETUP.md).
 
-Join our community of developers creating universal apps.
+## Ordnerstruktur
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```text
+src/
+├── app/                    Expo-Router-Routen (bewusst sehr dünn)
+├── components/ui/          wiederverwendbare UI-Bausteine
+├── features/
+│   ├── home/               Startseite und Mock-Dashboard
+│   ├── profile/            Expertenprofil
+│   └── quiz/
+│       ├── data/           Mock-Fragen
+│       ├── domain/         UI-unabhängige Spielregeln und Tests
+│       └── screens/        Quiz-Oberfläche
+├── lib/                    externe Dienste, derzeit Supabase
+└── theme/                  Farben, Abstände und Radien
+
+supabase/
+└── migrations/             versionierte Datenbankänderungen
+```
+
+Für den Start bleibt dies absichtlich ein einzelnes App-Repository. Ein Monorepo würde heute mehr Konfiguration als Nutzen bringen. Gemeinsame Pakete können später ausgelagert werden, sobald tatsächlich eine zweite App oder ein separater Server entsteht.
+
+## Supabase
+
+Die Mock-App läuft ohne Supabase-Projekt. Für die Verbindung:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Dann die Projekt-URL und den **Publishable Key** aus Supabase in `.env` eintragen. Niemals einen Service-Role-Key oder den Schlüssel eines Fußball-Datenproviders in die Mobile-App kopieren. `.env` ist von Git ausgeschlossen.
+
+## Entwicklungsregel
+
+Vor jedem abgeschlossenen Schritt:
+
+```powershell
+npm run check
+npm run doctor
+```
+
+Die dauerhaften Projektregeln für Codex stehen in [AGENTS.md](AGENTS.md).
