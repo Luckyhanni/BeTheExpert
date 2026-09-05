@@ -10,6 +10,7 @@ Die erste Mock-App enthält:
 - reine, getestete Quiz- und Punkte-Logik
 - eine vorbereitete Supabase-Anbindung mit sicherem Mock-Fallback
 - EAS-Profile für Development-, Preview- und Production-Builds
+- das bereitgestellte Moderator-Motiv als sichtbares Markenlogo, App-Icon und Splashscreen
 
 ## In zwei Minuten starten
 

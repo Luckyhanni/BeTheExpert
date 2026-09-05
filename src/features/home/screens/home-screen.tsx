@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { Image } from 'expo-image';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { AppScreen } from '@/components/ui/app-screen';
@@ -17,9 +18,17 @@ export function HomeScreen() {
   return (
     <AppScreen>
       <View style={styles.header}>
-        <Text style={styles.eyebrow}>BE THE EXPERT</Text>
-        <Text style={styles.greeting}>Guten Tag, {dashboard.displayName}.</Text>
-        <Text style={styles.subtitle}>Learn it. Play it. Master it.</Text>
+        <Image
+          accessibilityLabel="Be the Expert Logo"
+          contentFit="cover"
+          source={require('../../../../assets/branding/app-icon.png')}
+          style={styles.logo}
+        />
+        <View style={styles.headerCopy}>
+          <Text style={styles.eyebrow}>BE THE EXPERT</Text>
+          <Text style={styles.greeting}>Guten Tag, {dashboard.displayName}.</Text>
+          <Text style={styles.subtitle}>Learn it. Play it. Master it.</Text>
+        </View>
       </View>
 
       <Card style={styles.careerCard}>
@@ -91,9 +100,11 @@ export function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  header: { gap: spacing.xs, paddingTop: spacing.md },
+  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, paddingTop: spacing.md },
+  logo: { width: 76, height: 76, borderRadius: radii.md, borderWidth: 1, borderColor: colors.border },
+  headerCopy: { flex: 1, gap: spacing.xs },
   eyebrow: { color: colors.accent, fontSize: 13, fontWeight: '900', letterSpacing: 2.2 },
-  greeting: { color: colors.text, fontSize: 30, fontWeight: '900', letterSpacing: -0.7 },
+  greeting: { color: colors.text, fontSize: 25, fontWeight: '900', letterSpacing: -0.6 },
   subtitle: { color: colors.textMuted, fontSize: 15 },
   careerCard: { backgroundColor: colors.surfaceElevated },
   rowBetween: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: spacing.md },
