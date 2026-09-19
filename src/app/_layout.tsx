@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Text, type ColorValue } from 'react-native';
 
 import { colors } from '@/theme/tokens';
+import { AuthProvider } from '@/features/auth/auth-provider';
 
 function TabIcon({ label, color }: { label: string; color: ColorValue }) {
   return <Text style={{ color, fontSize: 18, fontWeight: '900' }}>{label}</Text>;
@@ -10,7 +11,7 @@ function TabIcon({ label, color }: { label: string; color: ColorValue }) {
 
 export default function RootLayout() {
   return (
-    <>
+    <AuthProvider>
       <StatusBar style="light" />
       <Tabs
         screenOptions={{
@@ -62,6 +63,6 @@ export default function RootLayout() {
           }}
         />
       </Tabs>
-    </>
+    </AuthProvider>
   );
 }

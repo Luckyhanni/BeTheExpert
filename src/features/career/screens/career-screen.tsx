@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
+import { useFocusEffect, useRouter } from 'expo-router';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppScreen } from '@/components/ui/app-screen';
@@ -21,8 +21,13 @@ import {
   type CareerCategory,
 } from '@/features/career/data/career-path';
 import { colors, radii, spacing } from '@/theme/tokens';
+import { CAREER_PLAYTEST_UNLOCK_ALL } from '@/features/career/data/career-settings';
+import { useAuth } from '@/features/auth/auth-provider';
+import { loadCareerProgress, type CareerProgress } from '@/features/career/data/career-progress';
+import { careerPacks, findCareerPack } from '@/features/quiz/data/career-packs';
 
 export function CareerScreen() {
+  const { session } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [savedLeague, setSavedLeague] = useState<CareerLeague | null>(null);
@@ -55,7 +60,7 @@ export function CareerScreen() {
     setIsSaving(true);
 
     try {
-      await saveCareerLeagueId(selectedLeague.id);
+      await saveCareerLeagueId(selectedLeague.id, session?.user.id);
       setSavedLeague(selectedLeague);
     } catch {
       setError('Die Auswahl konnte nicht gespeichert werden. Bitte versuche es erneut.');
@@ -75,7 +80,7 @@ export function CareerScreen() {
     );
   }
 
-  if (savedLeague) return <CareerOverview league={savedLeague} />;
+  if (savedLeague) return <CareerOverview league={savedLeague} onChangeLeague={() => { setSelectedLeague(savedLeague); setSavedLeague(null); }} />;
 
   return (
     <AppScreen>
@@ -89,7 +94,7 @@ export function CareerScreen() {
 
       <View style={styles.notice}>
         <Text style={styles.noticeIcon}>!</Text>
-        <Text style={styles.noticeText}>Diese Auswahl gilt für deine erste Karriere.</Text>
+        <Text style={styles.noticeText}>Du kannst die Liga später wechseln. Dein Fortschritt bleibt je Liga gespeichert.</Text>
       </View>
 
       {countries.map((country) => (
@@ -174,14 +179,25 @@ function LeagueGroup({
   );
 }
 
-function CareerOverview({ league }: { league: CareerLeague }) {
+function CareerOverview({ league, onChangeLeague }: { league: CareerLeague; onChangeLeague: () => void }) {
   const [activeCategory, setActiveCategory] = useState<CareerCategory | null>(null);
+  const [progress, setProgress] = useState<CareerProgress>({});
+  const [progressError, setProgressError] = useState(false);
+  useFocusEffect(useCallback(() => {
+    let active = true;
+    loadCareerProgress().then((value) => { if (active) { setProgress(value); setProgressError(false); } })
+      .catch(() => { if (active) setProgressError(true); });
+    return () => { active = false; };
+  }, []));
+  const available = careerPacks.filter((p) => p.leagueId === league.id);
+  const passed = available.filter((p) => progress[p.id]?.passed).length;
 
   if (activeCategory) {
     return (
       <CategoryLevels
         category={activeCategory}
         league={league}
+        progress={progress}
         onBack={() => setActiveCategory(null)}
       />
     );
@@ -193,6 +209,9 @@ function CareerOverview({ league }: { league: CareerLeague }) {
         <Text style={styles.eyebrow}>DEINE KARRIERE</Text>
         <Text style={styles.title}>{league.name}</Text>
         <Text style={styles.intro}>Wähle einen Wissensbereich und meistere seine vier Level.</Text>
+        {CAREER_PLAYTEST_UNLOCK_ALL && <Text style={styles.intro}>Testmodus: Alle vorhandenen Quizze sind frei spielbar – in beiden Bundesligen.</Text>}
+        <Pressable accessibilityRole="button" onPress={onChangeLeague}><Text style={styles.backButtonText}>Liga wechseln · Fortschritt bleibt gespeichert</Text></Pressable>
+        {progressError && <Text style={styles.errorText}>Fortschritt konnte nicht geladen werden. Öffne die Karriere erneut.</Text>}
       </View>
 
       <LinearGradient colors={['#1C482F', '#0C2117', '#08130E']} style={styles.heroCard}>
@@ -200,13 +219,13 @@ function CareerOverview({ league }: { league: CareerLeague }) {
           <Text style={styles.heroCountryCode}>{league.countryCode}</Text>
         </View>
         <Text style={styles.heroLabel}>KARRIERE-FORTSCHRITT</Text>
-        <Text style={styles.heroTitle}>0 / 40 Level</Text>
+        <Text style={styles.heroTitle}>{passed} / {available.length} Level</Text>
         <Text style={styles.heroCountry}>{league.country} · Deine Liga</Text>
       </LinearGradient>
 
       <View style={styles.categoryHeading}>
         <Text style={styles.categoryHeadingTitle}>10 Wissensbereiche</Text>
-        <Text style={styles.categoryHeadingCount}>0 %</Text>
+        <Text style={styles.categoryHeadingCount}>{available.length ? Math.round(passed / available.length * 100) : 0} %</Text>
       </View>
 
       <View style={styles.categoryGrid}>
@@ -226,7 +245,7 @@ function CareerOverview({ league }: { league: CareerLeague }) {
             <Text style={styles.categoryDescription}>{category.description}</Text>
             <View style={styles.categoryProgressRow}>
               <View style={styles.categoryProgressTrack} />
-              <Text style={styles.categoryProgressText}>0 / 4</Text>
+              <Text style={styles.categoryProgressText}>{available.some((p) => p.categoryId === category.id) ? `${available.filter((p) => p.categoryId === category.id && progress[p.id]?.passed).length} / 4` : 'Folgt'}</Text>
             </View>
           </Pressable>
         ))}
@@ -239,10 +258,12 @@ function CategoryLevels({
   category,
   league,
   onBack,
+  progress,
 }: {
   category: CareerCategory;
   league: CareerLeague;
   onBack: () => void;
+  progress: CareerProgress;
 }) {
   const router = useRouter();
 
@@ -265,14 +286,10 @@ function CategoryLevels({
 
       <View style={styles.levelList}>
         {category.levels.map((level) => {
-          const isPlayable =
-            league.id === 'de-1' &&
-            ((category.id === 'champions' && (level.level === 1 || level.level === 2)) ||
-              (category.id === 'participants' && level.level === 1) ||
-              (category.id === 'top-scorers' && level.level === 1) ||
-              (category.id === 'players' && level.level === 1));
-          const highestPlayableLevel = category.id === 'champions' ? 2 : 1;
-          const isLocked = level.level > highestPlayableLevel;
+          const pack = findCareerPack(league.id, category.id, level.level);
+          const isLocked = !CAREER_PLAYTEST_UNLOCK_ALL && !!pack && level.level > 1 && !progress[`${league.id}:${category.id}:${level.level - 1}`]?.passed;
+          const isPlayable = !!pack && !isLocked;
+          const result = pack ? progress[pack.id] : undefined;
 
           return (
             <Pressable
@@ -302,17 +319,18 @@ function CategoryLevels({
                 <View style={styles.levelTitleRow}>
                   <Text style={styles.levelTitle}>{level.title}</Text>
                   <Text style={isPlayable ? styles.levelStatusAvailable : styles.levelStatusLocked}>
-                    {isPlayable ? 'SPIELEN' : isLocked ? 'GESPERRT' : 'FRAGEN FOLGEN'}
+                    {result?.passed ? 'BESTANDEN' : isPlayable ? 'SPIELEN' : isLocked ? 'GESPERRT' : 'FRAGEN FOLGEN'}
                   </Text>
                 </View>
                 <Text style={styles.levelMode}>
                   {level.mode}{level.timeLimitSeconds ? ` · ${level.timeLimitSeconds} SEK.` : ''}
                 </Text>
-                <Text style={styles.levelDescription}>{level.description}</Text>
+                <Text style={styles.levelDescription}>{pack?.scope ?? level.description}</Text>
+                {pack && <Text style={styles.levelMode}>{pack.rounds.length} Aufgaben · Bestwert {result?.bestPercent ?? 0} %</Text>}
                 <View style={styles.levelExampleBox}>
                   <Text style={styles.levelExampleLabel}>BEISPIEL</Text>
                   <Text style={styles.levelExample}>
-                    {formatLevelExample(level.example, league.name)}
+                    {pack?.rounds[0]?.prompt ?? formatLevelExample(level.example, league.name)}
                   </Text>
                 </View>
               </View>
@@ -322,7 +340,7 @@ function CategoryLevels({
       </View>
 
       <View style={styles.levelHint}>
-        <Text style={styles.levelHintText}>Schließe ein Level ab, um das nächste freizuschalten.</Text>
+        <Text style={styles.levelHintText}>{CAREER_PLAYTEST_UNLOCK_ALL ? 'Testmodus: Du kannst jedes vorhandene Level direkt spielen. Ergebnisse werden weiterhin in deinem Profil gespeichert.' : 'Bestehe ein Level mit mindestens 80 %, um das nächste freizuschalten.'}</Text>
       </View>
     </AppScreen>
   );

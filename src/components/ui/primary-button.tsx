@@ -5,14 +5,17 @@ import { colors, radii, spacing } from '@/theme/tokens';
 type PrimaryButtonProps = {
   label: string;
   onPress: () => void;
+  disabled?: boolean;
 };
 
-export function PrimaryButton({ label, onPress }: PrimaryButtonProps) {
+export function PrimaryButton({ label, onPress, disabled = false }: PrimaryButtonProps) {
   return (
     <Pressable
       accessibilityRole="button"
+      disabled={disabled}
+      accessibilityState={{ disabled }}
       onPress={onPress}
-      style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
+      style={({ pressed }) => [styles.button, (pressed || disabled) && styles.pressed]}>
       <Text style={styles.label}>{label}</Text>
     </Pressable>
   );

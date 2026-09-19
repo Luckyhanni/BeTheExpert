@@ -1,75 +1,53 @@
-import { StyleSheet, Text, View } from 'react-native';
-
+import { useState } from 'react';
+import { StyleSheet, Text, TextInput } from 'react-native';
 import { AppScreen } from '@/components/ui/app-screen';
 import { Card } from '@/components/ui/card';
-import { dashboard } from '@/features/home/data/mock-dashboard';
-import { colors, radii, spacing } from '@/theme/tokens';
-
-const categories = [
-  { label: 'Transfers', value: 84 },
-  { label: 'Spieler', value: 76 },
-  { label: 'Vereine', value: 73 },
-  { label: 'Aufstellungen', value: 67 },
-  { label: 'Geschichte', value: 51 },
-];
+import { PrimaryButton } from '@/components/ui/primary-button';
+import { useAuth } from '@/features/auth/auth-provider';
+import { useAccountSummary } from '@/features/auth/use-account-summary';
+import { saveDisplayName } from '@/features/auth/data/account';
+import { getSupabaseClient } from '@/lib/supabase';
+import { colors } from '@/theme/tokens';
 
 export function ProfileScreen() {
-  return (
-    <AppScreen>
-      <View style={styles.header}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>F</Text>
-        </View>
-        <View>
-          <Text style={styles.eyebrow}>EXPERTENPROFIL</Text>
-          <Text style={styles.title}>{dashboard.displayName}</Text>
-          <Text style={styles.subtitle}>
-            {dashboard.careerTitle} · Level {dashboard.level}
-          </Text>
-        </View>
-      </View>
-
-      <Card>
-        <Text style={styles.label}>Overall Expert Rating</Text>
-        <Text style={styles.rating}>{dashboard.expertRating}</Text>
-        <Text style={styles.muted}>
-          Getrennt von Karriere-XP – hier zählt deine tatsächliche Spielstärke.
-        </Text>
-      </Card>
-
-      <Card>
-        <Text style={styles.cardTitle}>Fachgebiete</Text>
-        {categories.map((category) => (
-          <View key={category.label} style={styles.category}>
-            <View style={styles.rowBetween}>
-              <Text style={styles.categoryLabel}>{category.label}</Text>
-              <Text style={styles.categoryValue}>{category.value}</Text>
-            </View>
-            <View style={styles.track}>
-              <View style={[styles.fill, { width: `${category.value}%` }]} />
-            </View>
-          </View>
-        ))}
-      </Card>
-    </AppScreen>
-  );
+  const { session } = useAuth();
+  const summary = useAccountSummary();
+  const [name, setName] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState('');
+  async function save() {
+    if (busy) return;
+    setBusy(true); setMessage('');
+    try { await saveDisplayName(name ?? summary.name, session?.user.id); setMessage('Dein Name ist gespeichert.'); }
+    catch { setMessage('Name konnte nicht gespeichert werden. Verwende 2 bis 32 Zeichen und prüfe deine Verbindung.'); }
+    finally { setBusy(false); }
+  }
+  async function logout() {
+    if (busy) return;
+    setBusy(true); setMessage('');
+    try {
+      const result = await getSupabaseClient()?.auth.signOut({ scope: 'local' });
+      if (result?.error) throw result.error;
+    } catch { setMessage('Abmelden fehlgeschlagen. Bitte versuche es erneut.'); }
+    finally { setBusy(false); }
+  }
+  return <AppScreen>
+    <Text style={styles.title}>Dein Profil</Text>
+    <Card><Text style={styles.heading}>{session ? session.user.email : 'Lokales Profil'}</Text>
+      <Text style={styles.copy}>{session ? 'Dein Fortschritt und deine Ligaauswahl werden in deinem Konto gespeichert. Zum Laden und Speichern brauchst du Internet.' : 'Deine Daten liegen nur auf diesem Gerät. Der Konto-Login ist noch nicht eingerichtet.'}</Text>
+    </Card>
+    <Card><Text style={styles.heading}>{summary.loading ? 'Fortschritt wird geladen …' : summary.error ? 'Fortschritt konnte nicht geladen werden.' : `${summary.passed} Karriere-Level bestanden`}</Text></Card>
+    {session ? <Card><Text style={styles.heading}>Spielername</Text>
+      <TextInput accessibilityLabel="Spielername" style={styles.input} value={name ?? summary.name} onChangeText={setName} maxLength={32} editable={!busy} autoCorrect={false} />
+      <PrimaryButton disabled={busy || summary.loading || summary.error} label={busy ? 'Bitte warten …' : 'Namen speichern'} onPress={() => void save()} />
+    </Card> : null}
+    {message ? <Text accessibilityLiveRegion="polite" style={styles.copy}>{message}</Text> : null}
+    {session ? <PrimaryButton disabled={busy} label="Auf diesem Gerät abmelden" onPress={() => void logout()} /> : null}
+  </AppScreen>;
 }
-
 const styles = StyleSheet.create({
-  header: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, paddingTop: spacing.md },
-  avatar: { width: 70, height: 70, borderRadius: 35, backgroundColor: colors.accent, alignItems: 'center', justifyContent: 'center' },
-  avatarText: { color: colors.background, fontSize: 31, fontWeight: '900' },
-  eyebrow: { color: colors.accent, fontSize: 11, fontWeight: '900', letterSpacing: 1.5 },
-  title: { color: colors.text, fontSize: 28, fontWeight: '900' },
-  subtitle: { color: colors.textMuted, fontSize: 14 },
-  label: { color: colors.textMuted, fontSize: 12, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' },
-  rating: { color: colors.accent, fontSize: 48, fontWeight: '900' },
-  muted: { color: colors.textMuted, fontSize: 14, lineHeight: 21 },
-  cardTitle: { color: colors.text, fontSize: 20, fontWeight: '900' },
-  category: { gap: spacing.sm },
-  rowBetween: { flexDirection: 'row', justifyContent: 'space-between' },
-  categoryLabel: { color: colors.text, fontSize: 15, fontWeight: '700' },
-  categoryValue: { color: colors.text, fontSize: 15, fontWeight: '900' },
-  track: { height: 9, backgroundColor: colors.background, borderRadius: radii.pill, overflow: 'hidden' },
-  fill: { height: '100%', backgroundColor: colors.accentStrong, borderRadius: radii.pill },
+  title: { color: colors.text, fontSize: 30, fontWeight: '900' },
+  heading: { color: colors.text, fontSize: 18, fontWeight: '700' },
+  copy: { color: colors.textMuted, fontSize: 15, lineHeight: 23 },
+  input: { color: colors.text, borderColor: colors.border, borderWidth: 1, borderRadius: 10, padding: 14, fontSize: 18 },
 });

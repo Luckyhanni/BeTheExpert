@@ -25,6 +25,8 @@
 
 ## Quality
 
+- Start long-running development servers only in a visible terminal window that the user can stop, or let the user launch `SERVER STARTEN.cmd`. Do not leave hidden tool-session servers running.
+
 - Support Android and iOS; avoid platform-specific code unless necessary.
 - Keep TypeScript strict and add tests for game/scoring rules.
 - Run `npm run check` and `npm run doctor` before considering an implementation complete.

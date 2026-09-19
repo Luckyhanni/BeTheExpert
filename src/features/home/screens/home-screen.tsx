@@ -4,7 +4,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { AppScreen } from '@/components/ui/app-screen';
 import { PrimaryButton } from '@/components/ui/primary-button';
-import { dashboard } from '@/features/home/data/mock-dashboard';
+import { useAccountSummary } from '@/features/auth/use-account-summary';
 import { colors, radii, spacing } from '@/theme/tokens';
 
 const quickGames = [
@@ -16,7 +16,8 @@ const quickGames = [
 
 export function HomeScreen() {
   const router = useRouter();
-  const xpProgress = `${Math.round((dashboard.xp / dashboard.nextLevelXp) * 100)}%` as const;
+  const summary = useAccountSummary();
+  const xpProgress = `${Math.min(100, summary.passed / 32 * 100)}%` as const;
 
   return (
     <AppScreen>
@@ -39,15 +40,15 @@ export function HomeScreen() {
           />
         </View>
         <View style={styles.profileCopy}>
-          <Text style={styles.greeting}>Hallo {dashboard.displayName}</Text>
+          <Text style={styles.greeting}>Hallo {summary.name || 'Experte'}</Text>
           <Text style={styles.careerLine}>
-            {dashboard.careerTitle} · Level {dashboard.level}
+            {summary.loading ? 'Karriere wird geladen …' : summary.error ? 'Fortschritt derzeit nicht verfügbar' : `${summary.passed} von 32 Karriere-Leveln bestanden`}
           </Text>
           <View style={styles.xpRow}>
             <View style={styles.xpTrack}>
               <View style={[styles.xpFill, { width: xpProgress }]} />
             </View>
-            <Text style={styles.xpValue}>{dashboard.xp.toLocaleString('de-DE')} XP</Text>
+            <Text style={styles.xpValue}>{summary.passed} / 32</Text>
           </View>
         </View>
       </View>
@@ -60,17 +61,17 @@ export function HomeScreen() {
         <View style={styles.dailyGlow} />
         <View style={styles.dailyTopRow}>
           <View style={styles.dailyCopy}>
-            <Text style={styles.sectionLabel}>DAILY CHALLENGE</Text>
+            <Text style={styles.sectionLabel}>KARRIERE STARTEN</Text>
             <Text style={styles.dailyTitle}>Deutsche Meister</Text>
           </View>
           <Text style={styles.trophy}>🏆</Text>
         </View>
         <Text style={styles.dailyDescription}>
-          Beweise dein Wissen im Expert Mode und sichere dir den Tagesbonus.
+          Erkenne deutsche Meister und starte deine Karriere.
         </Text>
-        <Text style={styles.rewardLine}>3 MIN · +350 XP</Text>
+        <Text style={styles.rewardLine}>MEISTER · MULTIPLE CHOICE</Text>
         <View style={styles.buttonWrap}>
-          <PrimaryButton label="Jetzt spielen  →" onPress={() => router.push('/play')} />
+          <PrimaryButton label="Jetzt spielen  →" onPress={() => router.push('/career')} />
         </View>
       </LinearGradient>
 
@@ -84,7 +85,7 @@ export function HomeScreen() {
           <Pressable
             accessibilityRole="button"
             key={game.title}
-            onPress={() => router.push('/play')}
+            onPress={() => router.push('/career')}
             style={({ pressed }) => [styles.quickCard, pressed && styles.pressed]}>
             <LinearGradient colors={game.colors} style={styles.quickGradient}>
               <Text style={styles.quickSymbol}>{game.symbol}</Text>
@@ -104,8 +105,8 @@ export function HomeScreen() {
             <Text style={styles.rankIcon}>★</Text>
           </View>
           <View style={styles.rankCopy}>
-            <Text style={styles.rankName}>{dashboard.careerTitle}</Text>
-            <Text style={styles.rankGoal}>Nächstes Ziel: Welt-Reporter</Text>
+            <Text style={styles.rankName}>Deine Fußballkarriere</Text>
+            <Text style={styles.rankGoal}>Vier Themen · Zwei Ligen · Dein Fortschritt</Text>
           </View>
         </View>
         <View style={styles.progressTrack}>
